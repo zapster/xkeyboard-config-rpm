@@ -4,7 +4,7 @@
 Summary: xkeyboard-config alternative xkb data files
 Name: xkeyboard-config
 Version: 0.8
-Release: 1
+Release: 2
 License: MIT
 Group: User Interface/X
 URL: http://www.x.org
@@ -74,6 +74,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/X11/xkb/rules/xorg.xml
 
 %changelog
+* Fri Jul 07 2006 Mike A. Harris <mharris@redhat.com> 0.8-2
+- Rename spec file from xorg-x11-xkbdata to xkeyboard-config.spec
+
 * Fri Jul 07 2006 Mike A. Harris <mharris@redhat.com> 0.8-1
 - Renamed package from 'xorg-x11-xkbdata' to 'xkeyboard-config' to match the
   upstream project name and tarball.  I kept the rpm changelog intact however
