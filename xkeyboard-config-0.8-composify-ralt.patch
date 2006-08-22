@@ -1,0 +1,23 @@
+--- xkeyboard-config-0.8/symbols/level3.bak	2006-08-15 11:16:23.000000000 +0200
++++ xkeyboard-config-0.8/symbols/level3	2006-08-15 11:45:34.000000000 +0200
+@@ -10,11 +10,15 @@
+ // third engraved symbol
+ default partial modifier_keys
+ xkb_symbols "ralt_switch" {
+-  key <RALT> {
+-    type[Group1]="ONE_LEVEL",
+-    symbols[Group1] = [ ISO_Level3_Shift ]
+-    };
+-  modifier_map Mod5   { ISO_Level3_Shift };
++  // key <RALT> {
++    // type[Group1]="ONE_LEVEL",
++    // symbols[Group1] = [ ISO_Level3_Shift ]
++    // };
++  // modifier_map Mod5   { ISO_Level3_Shift };
++    key <RALT>  { type[Group1]="TWO_LEVEL",
++                  [ ISO_Level3_Shift, Multi_key ]   };
++    modifier_map Mod5   { <RALT> };
++
+ };
+ 
+ // special case or right Alt switch - for use with grp:alts_toggle

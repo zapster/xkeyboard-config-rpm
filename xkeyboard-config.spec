@@ -4,13 +4,14 @@
 Summary: xkeyboard-config alternative xkb data files
 Name: xkeyboard-config
 Version: 0.8
-Release: 2
+Release: 3
 License: MIT
 Group: User Interface/X
 URL: http://www.x.org
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0: http://xlibs.freedesktop.org/xkbdesc/%{name}-%{version}.tar.bz2
+Patch0: xkeyboard-config-0.8-composify-ralt.patch
 
 BuildArch: noarch
 
@@ -38,6 +39,7 @@ xkeyboard-config alternative xkb data files
 
 %prep
 %setup -q
+%patch0 -p1 -b .composify-ralt
 
 %build
 %configure \
@@ -74,6 +76,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/X11/xkb/rules/xorg.xml
 
 %changelog
+* Tue Aug 22 2006 Adam Jackson <ajackson@redhat.com> 0.8-3
+- Add Compose semantics to right Alt when that's ISO_Level3_Shift (#193922)
+
 * Fri Jul 07 2006 Mike A. Harris <mharris@redhat.com> 0.8-2
 - Rename spec file from xorg-x11-xkbdata to xkeyboard-config.spec
 
