@@ -1,0 +1,27 @@
+--- xkeyboard-config-0.8/rules/base.thinkpad	2006-08-24 19:42:40.000000000 -0400
++++ xkeyboard-config-0.8/rules/base	2006-08-24 19:42:54.000000000 -0400
+@@ -107,7 +107,8 @@
+   flexpro	=	keytronic(FlexPro)
+   hp6000	=	hp(omnibook)
+   omnikey101	=	northgate(omnikey101)
+-  thinkpad	=	ibm_vndr/thinkpad(common)
++  thinkpad	=	ibm_vndr/thinkpad(us)
++  thinkpadintl	=	ibm_vndr/thinkpad(intl)
+  $pcmodels	=	pc(%m)
+   jp106		=	pc(jp106)
+   everex	=	everex(STEPnote)
+--- xkeyboard-config-0.8/rules/base.xml.in.thinkpad	2006-08-24 19:43:03.000000000 -0400
++++ xkeyboard-config-0.8/rules/base.xml.in	2006-08-24 19:43:25.000000000 -0400
+@@ -400,6 +400,12 @@
+     </model>
+     <model>
+       <configItem>
++        <name>thinkpadintl</name>
++        <_description>IBM ThinkPad 560Z/600/600E/A22E, Intl</_description>
++      </configItem>
++    </model>
++    <model>
++      <configItem>
+         <name>logiaccess</name>
+         <_description>Logitech Access Keyboard</_description>
+       </configItem>

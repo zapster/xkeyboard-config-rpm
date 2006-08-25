@@ -4,7 +4,7 @@
 Summary: xkeyboard-config alternative xkb data files
 Name: xkeyboard-config
 Version: 0.8
-Release: 3
+Release: 4
 License: MIT
 Group: User Interface/X
 URL: http://www.x.org
@@ -12,6 +12,10 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0: http://xlibs.freedesktop.org/xkbdesc/%{name}-%{version}.tar.bz2
 Patch0: xkeyboard-config-0.8-composify-ralt.patch
+
+Patch1: xkeyboard-config-0.8-thinkpad.patch
+Patch2: xkeyboard-config-0.8-kinesis.patch
+Patch3: xkeyboard-config-0.8-dell.patch
 
 BuildArch: noarch
 
@@ -40,6 +44,10 @@ xkeyboard-config alternative xkb data files
 %prep
 %setup -q
 %patch0 -p1 -b .composify-ralt
+
+%patch1 -p1 -b .thinkpad
+%patch2 -p1 -b .kinesis
+%patch3 -p1 -b .dell
 
 %build
 %configure \
@@ -76,6 +84,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/X11/xkb/rules/xorg.xml
 
 %changelog
+* Thu Aug 22 2006 Matthias Clasen <mclasen@redhat.com> 0.8-4
+- Fix geometry description for Thinkpads
+- Add a Kinesis model
+- Add Dell Precision M65 geometry and model
+
 * Tue Aug 22 2006 Adam Jackson <ajackson@redhat.com> 0.8-3
 - Add Compose semantics to right Alt when that's ISO_Level3_Shift (#193922)
 
