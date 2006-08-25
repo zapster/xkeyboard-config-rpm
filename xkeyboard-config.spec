@@ -13,8 +13,11 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Source0: http://xlibs.freedesktop.org/xkbdesc/%{name}-%{version}.tar.bz2
 Patch0: xkeyboard-config-0.8-composify-ralt.patch
 
+# https://bugs.freedesktop.org/show_bug.cgi?id=7990
 Patch1: xkeyboard-config-0.8-thinkpad.patch
+# https://bugs.freedesktop.org/show_bug.cgi?id=7991
 Patch2: xkeyboard-config-0.8-kinesis.patch
+# https://bugs.freedesktop.org/show_bug.cgi?id=7992
 Patch3: xkeyboard-config-0.8-dell.patch
 
 BuildArch: noarch
