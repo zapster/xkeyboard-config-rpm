@@ -29,7 +29,7 @@ BuildRequires: xorg-x11-util-macros
 BuildRequires: xkbcomp
 BuildRequires: perl(XML::Parser)
 #autoreconf needed for macbook patch
-BuildRequires: automake
+BuildRequires: automake intltool
 
 # NOTE: Any packages that need xkbdata to be installed should be using
 # the following "Requires: xkbdata" virtual provide, and not directly depending
