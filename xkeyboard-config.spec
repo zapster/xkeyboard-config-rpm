@@ -4,7 +4,7 @@
 Summary: xkeyboard-config alternative xkb data files
 Name: xkeyboard-config
 Version: 0.8
-Release: 4
+Release: 5
 License: MIT
 Group: User Interface/X
 URL: http://www.x.org
@@ -19,6 +19,8 @@ Patch1: xkeyboard-config-0.8-thinkpad.patch
 Patch2: xkeyboard-config-0.8-kinesis.patch
 # https://bugs.freedesktop.org/show_bug.cgi?id=7992
 Patch3: xkeyboard-config-0.8-dell.patch
+# https://bugs.freedesktop.org/show_bug.cgi?id=8068
+Patch4: xkeyboard-config-0.8-macbook.patch
 
 BuildArch: noarch
 
@@ -26,6 +28,8 @@ BuildRequires: pkgconfig
 BuildRequires: xorg-x11-util-macros
 BuildRequires: xkbcomp
 BuildRequires: perl(XML::Parser)
+#autoreconf needed for macbook patch
+BuildRequires: automake
 
 # NOTE: Any packages that need xkbdata to be installed should be using
 # the following "Requires: xkbdata" virtual provide, and not directly depending
@@ -51,8 +55,12 @@ xkeyboard-config alternative xkb data files
 %patch1 -p1 -b .thinkpad
 %patch2 -p1 -b .kinesis
 %patch3 -p1 -b .dell
+%patch4 -p1 -b .macbook
 
 %build
+#autoreconf needed for macbook patch
+autoreconf
+
 %configure \
     --enable-compat-rules \
     --with-xkb-base=%{_datadir}/X11/xkb \
@@ -87,6 +95,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/X11/xkb/rules/xorg.xml
 
 %changelog
+* Tue Aug 29 2006 Alexander Larsson <alexl@redhat.com> - 0.8-5
+- Add MacBook model and geometry, plus alt_win option
+
 * Thu Aug 22 2006 Matthias Clasen <mclasen@redhat.com> 0.8-4
 - Fix geometry description for Thinkpads
 - Add a Kinesis model
