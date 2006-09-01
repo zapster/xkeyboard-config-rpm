@@ -4,7 +4,7 @@
 Summary: xkeyboard-config alternative xkb data files
 Name: xkeyboard-config
 Version: 0.8
-Release: 5
+Release: 6%{?dist}
 License: MIT
 Group: User Interface/X
 URL: http://www.x.org
@@ -21,6 +21,8 @@ Patch2: xkeyboard-config-0.8-kinesis.patch
 Patch3: xkeyboard-config-0.8-dell.patch
 # https://bugs.freedesktop.org/show_bug.cgi?id=8068
 Patch4: xkeyboard-config-0.8-macbook.patch
+# backport from upstream cvs
+Patch5: xkeyboard-config-0.8-korean.patch
 
 BuildArch: noarch
 
@@ -56,6 +58,7 @@ xkeyboard-config alternative xkb data files
 %patch2 -p1 -b .kinesis
 %patch3 -p1 -b .dell
 %patch4 -p1 -b .macbook
+%patch5 -p1 -b .korean
 
 %build
 #autoreconf needed for macbook patch
@@ -95,6 +98,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/X11/xkb/rules/xorg.xml
 
 %changelog
+* Fri Sep  1 2006 Matthias Clasen <mclasen@redhat.com> - 0.8-6
+- Add support for Korean 106 key keyboards (204158)
+
 * Tue Aug 29 2006 Alexander Larsson <alexl@redhat.com> - 0.8-5
 - Add MacBook model and geometry, plus alt_win option
 

@@ -1,0 +1,277 @@
+--- xkeyboard-config-0.8/rules/base.xml.in.korean	2006-09-01 01:10:09.000000000 -0400
++++ xkeyboard-config-0.8/rules/base.xml.in	2006-09-01 01:14:33.000000000 -0400
+@@ -734,6 +734,12 @@
+         <description>Kinesis Classic Keyboard</description>
+       </configItem>
+     </model>
++    <model>
++      <configItem>
++	<name>kr106</name>
++	<_description>Korean 106-key</_description>
++      </configItem>
++    </model>
+   </modelList>
+   <layoutList>
+     <layout>
+@@ -2419,6 +2425,22 @@
+     </layout>
+     <layout>
+       <configItem>
++        <name>kr</name>
++        <_shortDescription>Kor</_shortDescription>
++        <_description>Korea, Republic of</_description>
++      </configItem>
++      <variantList>
++        <variant>
++          <configItem>
++            <name>kr104</name>
++            <_description>101/104 key Compatible</_description>
++          </configItem>
++        </variant>
++      </variantList>
++    </layout>
++
++    <layout>
++      <configItem>
+         <name>nec_vndr/jp</name>
+         <_shortDescription>Jpn</_shortDescription>
+         <_description>PC-98xx Series</_description>
+--- xkeyboard-config-0.8/rules/base.m_g.part.korean	2006-09-01 01:09:48.000000000 -0400
++++ xkeyboard-config-0.8/rules/base.m_g.part	2006-09-01 01:09:55.000000000 -0400
+@@ -9,6 +9,7 @@
+   thinkpad	=	ibm_vndr/thinkpad(common)
+  $pcmodels	=	pc(%m)
+   jp106		=	pc(jp106)
++  kr106		=	pc(kr106)
+   everex	=	everex(STEPnote)
+   winbook	=	winbook(XP5)
+   pc98		=	nec(pc98)
+--- xkeyboard-config-0.8/rules/base.lists.part.korean	2006-09-01 01:09:13.000000000 -0400
++++ xkeyboard-config-0.8/rules/base.lists.part	2006-09-01 01:09:23.000000000 -0400
+@@ -2,7 +2,7 @@
+ // If you want non-latin layouts implicitly include the en_US layout
+ // uncomment lines below
+ //! $nonlatin = am ara ben bd bg bt by cs deva ge gh gr guj guru il \
+-//              in ir iku jp kan kh la lao lk mk mm mn mv mal ori pk \
++//              in ir iku jp kan kh kr la lao lk mk mm mn mv mal ori pk \
+ //              ru scc sy syr tel th tj tam ua uz
+ 
+ ! $pcmodels = pc101 pc102 pc104 pc105
+--- xkeyboard-config-0.8/geometry/pc.korean	2006-09-01 01:08:37.000000000 -0400
++++ xkeyboard-config-0.8/geometry/pc	2006-09-01 01:08:43.000000000 -0400
+@@ -1157,3 +1157,164 @@
+     alias <AC00> = <CAPS>;
+     alias <AA00> = <LCTL>;
+ }; // End of "pc86" geometry
++
++xkb_geometry "kr106" {
++
++    description= "Korean 106";
++    width= 470;
++    height= 210;
++
++    shape.cornerRadius= 1;
++    shape "NORM" { { [ 18,18] }, { [2,1], [ 16,16] } };
++    shape "BKSP" { { [ 38,18] }, { [2,1], [ 36,16] } };
++    shape "TABK" { { [ 28,18] }, { [2,1], [ 26,16] } };
++    shape "BKSL" { { [ 28,18] }, { [2,1], [ 26,16] } };
++    shape "RTRN" { { [ 42,18] }, { [2,1], [ 40,16] } };
++    shape "CAPS" { { [ 33,18] }, { [2,1], [ 31,16] } };
++    shape "LFSH" { { [ 42,18] }, { [2,1], [ 40,16] } };
++    shape "RTSH" { { [ 52,18] }, { [2,1], [ 50,16] } };
++    shape "MODK" { { [ 27,18] }, { [2,1], [ 25,16] } };
++    shape "SMOD" { { [ 23,18] }, { [2,1], [ 21,16] } };
++    shape "SPCE" { { [ 75,18] }, { [2,1], [ 73,16] } };
++    shape "KP0"  { { [ 37,18] }, { [2,1], [ 35,16] } };
++    shape "KPAD" { { [ 18,37] }, { [2,1], [ 16,35] } };
++
++    shape "LEDS" { cornerRadius= 0, { [ 75 ,20 ] } };
++    shape "LED"  { cornerRadius= 0, { [  5,  1 ] } };
++    solid "LedPanel" {
++	shape= "LEDS";
++	top=  52;
++	left= 377;
++	color= "grey10";
++    };
++
++    indicator.onColor= "green";
++    indicator.offColor= "green30";
++    indicator.top= 67;
++    indicator.shape= "LED";
++    indicator "Num Lock"     { left= 382; };
++    indicator "Caps Lock"    { left= 407; };
++    indicator "Scroll Lock"  { left= 433; };
++    text.top= 55;
++    text.color= "black";
++    text "NumLockLabel"		{ left= 378; text="Num\nLock"; };
++    text "CapsLockLabel"	{ left= 403; text="Caps\nLock"; };
++    text "ScrollLockLabel"	{ left= 428; text="Scroll\nLock"; };
++
++    section.left= 19;
++    row.left= 1;
++    key.shape= "NORM";
++    key.gap=  1;
++    section "Function" {
++	top= 52;
++	row {
++	    top= 1;
++	    keys {  { <ESC>, color="grey20" },
++		    { <FK01>, 20 }, <FK02>, <FK03>, <FK04>,
++		    { <FK05>, 11 }, <FK06>, <FK07>, <FK08>,
++		    { <FK09>, 11 }, <FK10>, <FK11>, <FK12>,
++		    { <PRSC>, 8 }, <SCLK>, <PAUS> 
++	    };
++	};
++    }; // End of "Function" section
++
++    section "Alpha" {
++	top= 91;
++	row {
++	    top= 1;
++	    keys { <TLDE>, <AE01>, <AE02>, <AE03>, <AE04>,
++		   <AE05>, <AE06>, <AE07>, <AE08>, <AE09>,
++		   <AE10>, <AE11>, <AE12>,
++		   { <BKSP>, "BKSP", color="grey20" }
++	    };
++	};
++	row {
++	    top= 20;
++	    keys { { <TAB>, "TABK", color="grey20" },
++		   <AD01>, <AD02>, <AD03>, <AD04>, <AD05>, 
++		   <AD06>, <AD07>, <AD08>, <AD09>, <AD10>, 
++		   <AD11>, <AD12>, { <BKSL>, "BKSL" }
++	    };
++	};
++	row {
++	    top= 39;
++	    keys { { <CAPS>, "CAPS", color="grey20" },
++		   <AC01>, <AC02>, <AC03>, <AC04>, <AC05>, 
++		   <AC06>, <AC07>, <AC08>, <AC09>, <AC10>, 
++		   <AC11>, { <RTRN>, "RTRN", color="grey20" }
++	    };
++	};
++	row {
++	    top= 58;
++	    keys { { <LFSH>, "LFSH", color="grey20" },
++		    <AB01>, <AB02>, <AB03>, <AB04>, <AB05>, 
++		    <AB06>, <AB07>, <AB08>, <AB09>, <AB10>, 
++		    { <RTSH>, "RTSH", color="grey20" }
++	    };
++	};
++	row {
++	    top= 77;
++	    key.shape= "SMOD";
++	    key.color= "grey20";
++	    keys { { <LCTL>, "MODK" }, <LWIN>, <LALT>,
++		   { <K71>, "NORM", color="white" },
++		   { <SPCE>, "SPCE", color="white" },
++		   { <K72>, "NORM", color="white" },
++		   <RALT>, <RWIN>, <MENU>, <RCTL>
++	    };
++	};
++    }; // End of "Alpha" section
++
++    section "Editing" {
++	top= 91;
++	left= 312;
++	key.color= "grey20";
++	row {
++	    top= 1;
++	    keys { <INS>, <HOME>, <PGUP> };
++	};
++        row {
++	    top= 20;
++	    keys { <DELE>, <END>, <PGDN> };
++	};
++	row {
++	    top= 58;
++	    left= 20;
++	    keys { <UP> };
++	};
++	row {
++	    top= 77;
++	    keys { <LEFT>, <DOWN>, <RGHT> };
++	};
++    }; // End of "Editing" section
++
++    section "Keypad" {
++	top= 91;
++	left= 376;
++	row {
++	    top= 1;
++	    key.color= "grey20";
++	    keys { <NMLK>, <KPDV>, <KPMU>, <KPSU> };
++	};
++	row {
++	    top= 20;
++	    keys { <KP7>, <KP8>, <KP9>, { <KPAD>, "KPAD", color="grey20" } };
++	};
++	row {
++	    top= 39;
++	    keys { <KP4>, <KP5>, <KP6> };
++	};
++	row {
++	    top= 58;
++	    keys { <KP1>, <KP2>, <KP3>, { <KPEN>, "KPAD", color="grey20" } };
++	};
++	row {
++	    top= 77;
++	    keys { { <KP0>, "KP0" }, <KPDL> };
++	};
++    }; // End of "Keypad" section
++
++    alias <AC00> = <CAPS>;
++    alias <AA00> = <LCTL>;
++
++}; // End of "kr106" geometry
+--- xkeyboard-config-0.8/symbols/Makefile.in.korean	2006-09-01 01:16:57.000000000 -0400
++++ xkeyboard-config-0.8/symbols/Makefile.in	2006-09-01 01:17:05.000000000 -0400
+@@ -175,7 +175,7 @@
+ gr hr hu \
+ ie il in \
+ ir is it \
+-jp kg kh kz la \
++jp kg kh kr kz la \
+ latam latin lk \
+ lt lv mao \
+ mk mm mn \
+--- xkeyboard-config-0.8/symbols/kr.korean	2006-09-01 01:15:01.000000000 -0400
++++ xkeyboard-config-0.8/symbols/kr	2006-09-01 01:15:49.000000000 -0400
+@@ -0,0 +1,26 @@
++default  alphanumeric_keys
++xkb_symbols "kr106" {
++    name[Group1]= "Korea, Republic of";
++    include "us"
++    include "kr(koreankeys)"
++};
++
++alphanumeric_keys
++xkb_symbols "kr104" {
++    name[Group1]= "Korea, Republic of - 101/104 key Compatible";
++    include "us"
++    include "kr(koreankeys)"
++    include "kr(koreankeys_raltctl)"
++};
++
++partial hidden function_keys
++xkb_symbols "koreankeys" {
++    key <K72> { [ Hangul ] };
++    key <K71> { [ Hangul_Hanja ] };    
++};
++
++partial hidden function_keys
++xkb_symbols "koreankeys_raltctl" {
++    key <RALT> { [ Hangul ] };
++    key <RCTL> { [ Hangul_Hanja ] };    
++};
+--- xkeyboard-config-0.8/symbols/Makefile.am.korean	2006-09-01 01:16:38.000000000 -0400
++++ xkeyboard-config-0.8/symbols/Makefile.am	2006-09-01 01:16:44.000000000 -0400
+@@ -13,7 +13,7 @@
+ gr hr hu \
+ ie il in \
+ ir is it \
+-jp kg kh kz la \
++jp kg kh kr kz la \
+ latam latin lk \
+ lt lv mao \
+ mk mm mn \
