@@ -1,6 +1,5 @@
-diff -urN xkb.orig/geometry/macbook xkb/geometry/macbook
---- xkeyboard-config-0.8/geometry/macbook	1970-01-01 01:00:00.000000000 +0100
-+++ xkeyboard-config-0.8/geometry/macbook.macbook	2006-08-29 16:02:05.000000000 +0200
+--- /dev/null	2006-08-28 15:22:40.902752500 +0200
++++ xkeyboard-config-0.8/geometry/macbook	2006-09-01 12:39:19.000000000 +0200
 @@ -0,0 +1,237 @@
 +xkb_geometry "macbook79" {
 +
@@ -239,8 +238,8 @@ diff -urN xkb.orig/geometry/macbook xkb/geometry/macbook
 +    alias <AA00> = <LCTL>;
 +
 +};
---- xkeyboard-config-0.8/geometry/Makefile.am.macbook	2006-08-29 19:31:46.000000000 +0200
-+++ xkeyboard-config-0.8/geometry/Makefile.am	2006-08-29 19:31:57.000000000 +0200
+--- xkeyboard-config-0.8/geometry/Makefile.am.macbook	2005-09-21 23:29:24.000000000 +0200
++++ xkeyboard-config-0.8/geometry/Makefile.am	2006-09-01 12:39:19.000000000 +0200
 @@ -6,7 +6,7 @@
  amiga ataritt chicony \
  dell everex fujitsu \
@@ -251,7 +250,7 @@ diff -urN xkb.orig/geometry/macbook xkb/geometry/macbook
  sun winbook README
  
 --- xkeyboard-config-0.8/symbols/altwin.macbook	2005-10-01 14:20:31.000000000 +0200
-+++ xkeyboard-config-0.8/symbols/altwin	2006-08-29 19:30:42.000000000 +0200
++++ xkeyboard-config-0.8/symbols/altwin	2006-09-01 12:39:19.000000000 +0200
 @@ -58,3 +58,14 @@
      modifier_map Mod1   { Alt_L, Alt_R, Meta_L, Meta_R };
      modifier_map Mod4   { Super_L, Super_R };
@@ -268,14 +267,16 @@ diff -urN xkb.orig/geometry/macbook xkb/geometry/macbook
 +    modifier_map Mod4	{ Meta_L, Meta_R };
 +};
 --- xkeyboard-config-0.8/symbols/macintosh_vndr/apple.macbook	2005-09-21 23:29:25.000000000 +0200
-+++ xkeyboard-config-0.8/symbols/macintosh_vndr/apple	2006-08-29 19:30:42.000000000 +0200
-@@ -3,6 +3,12 @@
++++ xkeyboard-config-0.8/symbols/macintosh_vndr/apple	2006-09-01 12:43:02.000000000 +0200
+@@ -3,6 +3,14 @@
  //
  // $XFree86: xc/programs/xkbcomp/symbols/apple,v 1.2 2003/10/24 20:38:20 tsi Exp $
  
 +// MacBook/MacBook Pro
 +xkb_symbols "macbook" {
 +    key <K6C>	{	[ XF86Eject ]    };
++    replace key <KPEN> { [ ISO_Level3_Shift ] };
++    modifier_map Mod2  { ISO_Level3_Shift };	
 +};
 +
 +
@@ -283,8 +284,8 @@ diff -urN xkb.orig/geometry/macbook xkb/geometry/macbook
  xkb_symbols "extended" {
  
 --- xkeyboard-config-0.8/keycodes/xfree86.macbook	2005-09-21 23:29:24.000000000 +0200
-+++ xkeyboard-config-0.8/keycodes/xfree86	2006-08-29 19:30:42.000000000 +0200
-@@ -412,4 +412,13 @@
++++ xkeyboard-config-0.8/keycodes/xfree86	2006-09-01 12:41:12.000000000 +0200
+@@ -412,4 +412,11 @@
      <KPPT> = 134;
  };
  
@@ -294,12 +295,10 @@ diff -urN xkb.orig/geometry/macbook xkb/geometry/macbook
 +// Macbook keyboards switch TLDE and LSGT keycodes
 +    <TLDE> =  94;
 +    <LSGT> =  49;
-+// Use the right apple key as right alt to get mode shift 3
-+    <RALT> = 116;
 +};
  
 --- xkeyboard-config-0.8/rules/base.ml_s.part.macbook	2006-01-15 00:47:48.000000000 +0100
-+++ xkeyboard-config-0.8/rules/base.ml_s.part	2006-08-29 19:30:42.000000000 +0200
++++ xkeyboard-config-0.8/rules/base.ml_s.part	2006-09-01 12:39:19.000000000 +0200
 @@ -13,6 +13,8 @@
    old_macintosh	$macvendorlayouts	=	macintosh_vndr/us(extended)+macintosh_vndr/%l%(v)
    old_macintosh	$nonlatin		=	macintosh_vndr/us(extended)+%l%(v):2
@@ -310,7 +309,7 @@ diff -urN xkb.orig/geometry/macbook xkb/geometry/macbook
   $mac		$macvendorlayouts	=	pc(pc105)+macintosh_vndr/%l%(v)
   $pcmodels      intl   			=       us(%mcompose)
 --- xkeyboard-config-0.8/rules/base.m_g.part.macbook	2005-09-21 23:29:25.000000000 +0200
-+++ xkeyboard-config-0.8/rules/base.m_g.part	2006-08-29 19:30:42.000000000 +0200
++++ xkeyboard-config-0.8/rules/base.m_g.part	2006-09-01 12:39:19.000000000 +0200
 @@ -13,5 +13,6 @@
    winbook	=	winbook(XP5)
    pc98		=	nec(pc98)
@@ -319,7 +318,7 @@ diff -urN xkb.orig/geometry/macbook xkb/geometry/macbook
   $mac		=	macintosh(macintosh)
    *		=       pc(pc104)
 --- xkeyboard-config-0.8/rules/base.o_s.part.macbook	2005-09-23 00:21:08.000000000 +0200
-+++ xkeyboard-config-0.8/rules/base.o_s.part	2006-08-29 19:30:42.000000000 +0200
++++ xkeyboard-config-0.8/rules/base.o_s.part	2006-09-01 12:39:19.000000000 +0200
 @@ -43,6 +43,7 @@
    altwin:super_win	=	+altwin(super_win)
    altwin:hyper_win	=	+altwin(hyper_win)
@@ -329,7 +328,7 @@ diff -urN xkb.orig/geometry/macbook xkb/geometry/macbook
    compose:rwin		=	+compose(rwin)
    compose:menu		=	+compose(menu)
 --- xkeyboard-config-0.8/rules/base.m_k.part.macbook	2006-02-22 00:52:07.000000000 +0100
-+++ xkeyboard-config-0.8/rules/base.m_k.part	2006-08-29 19:30:42.000000000 +0200
++++ xkeyboard-config-0.8/rules/base.m_k.part	2006-09-01 12:39:19.000000000 +0200
 @@ -8,4 +8,5 @@
    abnt2		=	xfree86(abnt2)
    jp106		=	xfree86(jp106)
@@ -337,7 +336,7 @@ diff -urN xkb.orig/geometry/macbook xkb/geometry/macbook
 + $macbooks	=	xfree86(macbook)
    *		=	xfree86
 --- xkeyboard-config-0.8/rules/base.lists.part.macbook	2006-01-14 23:22:13.000000000 +0100
-+++ xkeyboard-config-0.8/rules/base.lists.part	2006-08-29 19:30:42.000000000 +0200
++++ xkeyboard-config-0.8/rules/base.lists.part	2006-09-01 12:39:19.000000000 +0200
 @@ -6,6 +6,7 @@
  //              ru scc sy syr tel th tj tam ua uz
  
@@ -346,9 +345,8 @@ diff -urN xkb.orig/geometry/macbook xkb/geometry/macbook
  ! $maclaptop = ibook powerbook
  ! $mac = macintosh macintosh_old ibook powerbook
  
-diff -urN xkb.orig/rules/base xkb/rules/base
---- xkeyboard-config-0.8/rules/base.macbook	2006-08-29 17:54:26.000000000 +0200
-+++ xkeyboard-config-0.8/rules/base	2006-08-29 17:46:53.000000000 +0200
+--- xkeyboard-config-0.8/rules/base.macbook	2006-09-01 12:39:19.000000000 +0200
++++ xkeyboard-config-0.8/rules/base	2006-09-01 12:39:19.000000000 +0200
 @@ -15,6 +15,7 @@
  //              ru scc sy syr tel th tj tam ua uz
  
@@ -390,8 +388,8 @@ diff -urN xkb.orig/rules/base xkb/rules/base
    compose:ralt		=	+compose(ralt)
    compose:rwin		=	+compose(rwin)
    compose:menu		=	+compose(menu)
---- xkeyboard-config-0.8/rules/base.xml.in.macbook	2006-08-29 19:30:42.000000000 +0200
-+++ xkeyboard-config-0.8/rules/base.xml.in	2006-08-29 19:30:42.000000000 +0200
+--- xkeyboard-config-0.8/rules/base.xml.in.macbook	2006-09-01 12:39:19.000000000 +0200
++++ xkeyboard-config-0.8/rules/base.xml.in	2006-09-01 12:39:19.000000000 +0200
 @@ -676,6 +676,18 @@
      </model>
      <model>

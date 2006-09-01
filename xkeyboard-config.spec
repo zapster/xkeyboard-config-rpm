@@ -4,7 +4,7 @@
 Summary: xkeyboard-config alternative xkb data files
 Name: xkeyboard-config
 Version: 0.8
-Release: 6%{?dist}
+Release: 7%{?dist}
 License: MIT
 Group: User Interface/X
 URL: http://www.x.org
@@ -98,6 +98,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/X11/xkb/rules/xorg.xml
 
 %changelog
+* Fri Sep  1 2006 Alexander Larsson <alexl@redhat.com> - 0.8-7
+- Update macbook patch to be closer to what got in upstream
+- (kp enter is ralt, not the option key)
+
 * Fri Sep  1 2006 Matthias Clasen <mclasen@redhat.com> - 0.8-6
 - Add support for Korean 106 key keyboards (204158)
 
