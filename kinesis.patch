@@ -1,0 +1,9 @@
+diff -up xkeyboard-config-1.0/rules/base.m_g.part.kinesis xkeyboard-config-1.0/rules/base.m_g.part
+--- xkeyboard-config-1.0/rules/base.m_g.part.kinesis	2007-09-05 15:18:32.000000000 -0400
++++ xkeyboard-config-1.0/rules/base.m_g.part	2007-09-05 15:19:01.000000000 -0400
+@@ -11,4 +11,5 @@
+  $macbooks      =       macintosh(%m)
+  $macs		=	macintosh(macintosh)
+   hhk		=	hhk(basic)
++  kinesis	=	kinesis(model100)
+   *		=       pc(pc104)

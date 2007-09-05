@@ -3,26 +3,19 @@
 
 Summary: xkeyboard-config alternative xkb data files
 Name: xkeyboard-config
-Version: 0.8
-Release: 7%{?dist}
+Version: 1.0
+Release: 1%{?dist}
 License: MIT
 Group: User Interface/X
 URL: http://www.x.org
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0: http://xlibs.freedesktop.org/xkbdesc/%{name}-%{version}.tar.bz2
-Patch0: xkeyboard-config-0.8-composify-ralt.patch
 
-# https://bugs.freedesktop.org/show_bug.cgi?id=7990
-Patch1: xkeyboard-config-0.8-thinkpad.patch
 # https://bugs.freedesktop.org/show_bug.cgi?id=7991
-Patch2: xkeyboard-config-0.8-kinesis.patch
+Patch0: kinesis.patch
 # https://bugs.freedesktop.org/show_bug.cgi?id=7992
-Patch3: xkeyboard-config-0.8-dell.patch
-# https://bugs.freedesktop.org/show_bug.cgi?id=8068
-Patch4: xkeyboard-config-0.8-macbook.patch
-# backport from upstream cvs
-Patch5: xkeyboard-config-0.8-korean.patch
+Patch1: dellm65.patch
 
 BuildArch: noarch
 
@@ -52,18 +45,11 @@ xkeyboard-config alternative xkb data files
 
 %prep
 %setup -q
-%patch0 -p1 -b .composify-ralt
 
-%patch1 -p1 -b .thinkpad
-%patch2 -p1 -b .kinesis
-%patch3 -p1 -b .dell
-%patch4 -p1 -b .macbook
-%patch5 -p1 -b .korean
+%patch0 -p1 -b .kinesis
+%patch1 -p1 -b .dellm65
 
 %build
-#autoreconf needed for macbook patch
-autoreconf
-
 %configure \
     --enable-compat-rules \
     --with-xkb-base=%{_datadir}/X11/xkb \
@@ -98,6 +84,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/X11/xkb/rules/xorg.xml
 
 %changelog
+* Wed Sep  5 2007 Matthias Clasen <mclasen@redhat.com> - 1.0-1
+- Update to 1.0
+- Drop upstreamed patches
+- Update remaining patches
+
 * Fri Sep  1 2006 Alexander Larsson <alexl@redhat.com> - 0.8-7
 - Update macbook patch to be closer to what got in upstream
 - (kp enter is ralt, not the option key)
