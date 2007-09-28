@@ -4,7 +4,7 @@
 Summary: xkeyboard-config alternative xkb data files
 Name: xkeyboard-config
 Version: 1.1
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: MIT
 Group: User Interface/X
 URL: http://www.x.org
@@ -76,6 +76,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/X11/xkb/rules/xorg.xml
 
 %changelog
+* Wed Sep 26 2007 Matthias Clasen <mclasen@redhat.com> - 1.1-2
+- Pick up the respun 1.1 release
+
 * Wed Sep 26 2007 Matthias Clasen <mclasen@redhat.com> - 1.1-1
 - Update to 1.1
 - Drop upstreamed patches
