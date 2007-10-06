@@ -4,13 +4,15 @@
 Summary: xkeyboard-config alternative xkb data files
 Name: xkeyboard-config
 Version: 1.1
-Release: 2%{?dist}
+Release: 3%{?dist}
 License: MIT
 Group: User Interface/X
 URL: http://www.x.org
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0: http://xlibs.freedesktop.org/xkbdesc/%{name}-%{version}.tar.bz2
+# https://bugs.freedesktop.org/show_bug.cgi?id=12719
+Patch0: dellm65.patch
 
 BuildArch: noarch
 
@@ -40,6 +42,7 @@ xkeyboard-config alternative xkb data files
 
 %prep
 %setup -q
+%patch0 -p1 -b .dellm65
 
 %build
 %configure \
@@ -76,6 +79,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/X11/xkb/rules/xorg.xml
 
 %changelog
+* Sat Oct  6 2007 Matthias Clasen <mclasen@redhat.com> - 1.1-3
+- Somehow the Dell M65 model lost its vendor
+
 * Wed Sep 26 2007 Matthias Clasen <mclasen@redhat.com> - 1.1-2
 - Pick up the respun 1.1 release
 
