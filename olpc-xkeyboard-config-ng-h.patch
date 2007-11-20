@@ -1,0 +1,12 @@
+diff -u -p -u -p -r1.4 ng
+--- symbols/ng	28 Oct 2007 08:53:29 -0000	1.4
++++ symbols/ng	19 Nov 2007 21:51:34 -0000
+@@ -94,7 +94,7 @@ xkb_symbols "olpc" {
+    key <AC03>  { [         d,          D,    0x1000257,        0x100018A ] }; // D with hook
+    key <AC04>  { [        f,          F,    0x1001E0D,        0x1001E0C ] }; // D with dot below
+    key <AC05>  { [         g,          G,    0x1000272,               0x100019D ] }; // N with left hook
+-   key <AC06>  { [         u,          U,    0x1001EE5,               0x1001EE4 ] }; // U with dot below
++   key <AC06>  { [         h,          H,    0x1001EE5,               0x1001EE4 ] }; // U with dot below
+    key <AC07>  { [         j,          J,    0x1001ECB,               0x1001ECA ] }; // I with dot below
+    key <AC08>  { [         k,          K,    0x1000199,               0x1000198 ] }; // K with hook
+    key <AC09>  { [         l,          L,    0x10001E37,       0x1001E36 ] }; // L with dot below

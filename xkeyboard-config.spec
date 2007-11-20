@@ -1,18 +1,22 @@
 # INFO: Package contains data-only, no binaries, so no debuginfo is needed
 %define debug_package %{nil}
+%define cvsdate 20071120cvs
 
 Summary: xkeyboard-config alternative xkb data files
 Name: xkeyboard-config
 Version: 1.1
-Release: 3%{?dist}
+Release: 5.%{cvsdate}%{?dist}
 License: MIT
 Group: User Interface/X
 URL: http://www.x.org
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Source0: http://xlibs.freedesktop.org/xkbdesc/%{name}-%{version}.tar.bz2
-# https://bugs.freedesktop.org/show_bug.cgi?id=12719
-Patch0: dellm65.patch
+#Source0: http://xlibs.freedesktop.org/xkbdesc/%{name}-%{version}.tar.bz2
+Source0: %{name}-%{version}-%{cvsdate}.tar.bz2
+Patch0: olpc-xkeyboard-config-af.patch
+Patch1: olpc-xkeyboard-config-kz-group.patch
+Patch2: olpc-xkeyboard-config-ng-group.patch
+Patch3: olpc-xkeyboard-config-ng-h.patch
 
 BuildArch: noarch
 
@@ -20,7 +24,6 @@ BuildRequires: pkgconfig
 BuildRequires: xorg-x11-util-macros
 BuildRequires: xkbcomp
 BuildRequires: perl(XML::Parser)
-#autoreconf needed for macbook patch
 BuildRequires: automake intltool
 
 # NOTE: Any packages that need xkbdata to be installed should be using
@@ -42,7 +45,10 @@ xkeyboard-config alternative xkb data files
 
 %prep
 %setup -q
-%patch0 -p1 -b .dellm65
+%patch0 -p0 -b .af
+%patch1 -p0 -b .kzgroup
+%patch2 -p0 -b .nggroup
+%patch3 -p0 -b .ngh
 
 %build
 %configure \
@@ -59,6 +65,9 @@ rm -rf $RPM_BUILD_ROOT
 make install DESTDIR=$RPM_BUILD_ROOT
 # Remove unnecessary symlink
 rm -f $RPM_BUILD_ROOT%{_datadir}/X11/xkb/compiled
+
+# Bernie: remove locale stuff
+rm -rf $RPM_BUILD_ROOT%{_datadir}/locale
 
 # Create filelist
 {
@@ -79,6 +88,30 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/X11/xkb/rules/xorg.xml
 
 %changelog
+* Mon Nov 19 2007 Bernardo Innocenti <bernie@codewiz.org> 1.1-5.20071119cvs
+- Upgrade xkeyboard-config snapshot to cvs20071119
+- Add olpc-xkeyboard-config-af.patch
+- Add olpc-xkeyboard-config-kz-group.patch
+- Add olpc-xkeyboard-config-ng-group.patch
+- Add olpc-xkeyboard-config-ng-h.patch
+- Remove olpc-xkeyboard-config-ara-fixes.patch (integrated upstream)
+- Remove olpc-xkeyboard-config-br-accents.patch (integrated upstream)
+- Remove olpc-xkeyboard-config-es-accents.patch (integrated upstream)
+- Remove olpc-xkeyboard-config-us-typo.patch (integrated upstream)
+
+* Sat Oct 27 2007 Bernardo Innocenti <bernie@codewiz.org> 1.1-5.20071009cvs
+- Add olpc-xkeyboard-config-ara-fixes.patch
+- Add olpc-xkeyboard-config-br-accents.patch
+- Add olpc-xkeyboard-config-es-accents.patch
+- Add olpc-xkeyboard-config-us-typo.patch
+
+* Sat Oct 09 2007 Bernardo Innocenti <bernie@codewiz.org> - 1.1-4.20071009cvs
+- Upgrade xkeyboard-config snapshot to cvs20071009
+
+* Sat Oct 06 2007 Bernardo Innocenti <bernie@codewiz.org> - 1.1-4.20071006cvs
+- Resync with Fedora Development
+- Upgrade xkeyboard-config snapshot to cvs20071006
+
 * Sat Oct  6 2007 Matthias Clasen <mclasen@redhat.com> - 1.1-3
 - Somehow the Dell M65 model lost its vendor
 
@@ -93,6 +126,35 @@ rm -rf $RPM_BUILD_ROOT
 - Update to 1.0
 - Drop upstreamed patches
 - Update remaining patches
+
+* Tue Sep 04 2007 Bernardo Innocenti <bernie@codewiz.org> - 0.8.20070829cvs
+- Update OLPC patch to take11 (use old evdev key name for the "view source"
+  key)
+
+* Tue Sep 04 2007 Bernardo Innocenti <bernie@codewiz.org> - 0.8.20070829cvs
+- Downgrade xkeyboard-config snapshot to cvs20070829 to revert
+  recent evdev changes (the version of xkbcomp we ship chokes on them).
+
+* Fri Aug 31 2007 Bernardo Innocenti <bernie@codewiz.org> - 0.7.20070831cvs
+- Update OLPC patch to take10 (integrate changes requested by
+  upstream reviewer)
+
+* Wed Aug 22 2007 Bernardo Innocenti <bernie@codewiz.org> - 0.6.20070820cvs
+- Update OLPC patch to take9 (fix 'h' key on us layout)
+
+* Wed Aug 22 2007 Bernardo Innocenti <bernie@codewiz.org> - 0.5.20070820cvs
+- Update OLPC patch to take8 (don't use olpc variant for et layout)
+
+* Wed Aug 22 2007 Bernardo Innocenti <bernie@codewiz.org> - 0.4.20070820cvs
+- Update OLPC patch to take7
+
+* Mon Aug 20 2007 Bernardo Innocenti <bernie@codewiz.org> - 0.3.20070820cvs
+- Update to CVS snapshot 20070820
+
+* Fri Jun 29 2007 Bernardo Innocenti <bernie@codewiz.org> - 0.2.20070629cvs
+- Update to CVS snapshot 20070629
+- Add OLPC patch
+- Drop patches already integrated upstream
 
 * Fri Sep  1 2006 Alexander Larsson <alexl@redhat.com> - 0.8-7
 - Update macbook patch to be closer to what got in upstream
