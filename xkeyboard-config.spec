@@ -24,7 +24,7 @@ BuildRequires: pkgconfig
 BuildRequires: xorg-x11-util-macros
 BuildRequires: xkbcomp
 BuildRequires: perl(XML::Parser)
-BuildRequires: automake intltool
+BuildRequires: gettext
 
 # NOTE: Any packages that need xkbdata to be installed should be using
 # the following "Requires: xkbdata" virtual provide, and not directly depending
