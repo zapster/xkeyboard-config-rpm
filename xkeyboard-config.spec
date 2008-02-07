@@ -1,22 +1,17 @@
 # INFO: Package contains data-only, no binaries, so no debuginfo is needed
 %define debug_package %{nil}
-%define cvsdate 20071120cvs
 
 Summary: xkeyboard-config alternative xkb data files
 Name: xkeyboard-config
-Version: 1.1
-Release: 5.%{cvsdate}%{?dist}
+Version: 1.2
+Release: 1%{?dist}
 License: MIT
 Group: User Interface/X
 URL: http://www.x.org
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-#Source0: http://xlibs.freedesktop.org/xkbdesc/%{name}-%{version}.tar.bz2
-Source0: %{name}-%{version}-%{cvsdate}.tar.bz2
-Patch0: olpc-xkeyboard-config-af.patch
+Source0: http://xlibs.freedesktop.org/xkbdesc/%{name}-%{version}.tar.bz2
 Patch1: olpc-xkeyboard-config-kz-group.patch
-Patch2: olpc-xkeyboard-config-ng-group.patch
-Patch3: olpc-xkeyboard-config-ng-h.patch
 
 BuildArch: noarch
 
@@ -45,10 +40,7 @@ xkeyboard-config alternative xkb data files
 
 %prep
 %setup -q
-%patch0 -p0 -b .af
-%patch1 -p0 -b .kzgroup
-%patch2 -p0 -b .nggroup
-%patch3 -p0 -b .ngh
+%patch1 -p1 -b .kzgroup
 
 %build
 %configure \
@@ -88,6 +80,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/X11/xkb/rules/xorg.xml
 
 %changelog
+* Thu Feb  7 2008 Matthias Clasen  <mclasen@redhat.com> - 1.2-1
+- Update to 1.2
+- Remove upstreamed olpc patches
+
 * Mon Nov 19 2007 Bernardo Innocenti <bernie@codewiz.org> 1.1-5.20071119cvs
 - Upgrade xkeyboard-config snapshot to cvs20071119
 - Add olpc-xkeyboard-config-af.patch
