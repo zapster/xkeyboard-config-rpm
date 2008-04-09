@@ -4,7 +4,7 @@
 Summary: xkeyboard-config alternative xkb data files
 Name: xkeyboard-config
 Version: 1.2
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: MIT
 Group: User Interface/X
 URL: http://www.x.org
@@ -12,6 +12,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0: http://xlibs.freedesktop.org/xkbdesc/%{name}-%{version}.tar.bz2
 Patch1: olpc-xkeyboard-config-kz-group.patch
+Patch2: usinet.patch
 
 BuildArch: noarch
 
@@ -41,6 +42,7 @@ xkeyboard-config alternative xkb data files
 %prep
 %setup -q
 %patch1 -p1 -b .kzgroup
+%patch2 -p1 -b .usinet
 
 %build
 %configure \
@@ -80,6 +82,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/X11/xkb/rules/xorg.xml
 
 %changelog
+* Wed Apr  9 2008 Matthias Clasen  <mclasen@redhat.com> - 1.2-2
+- Make pc105 have inet keys, not 100% correct, but better than
+  having the kbd driver report "us+inet" which confused XKB and
+  higher layers (#441398)
+
 * Thu Feb  7 2008 Matthias Clasen  <mclasen@redhat.com> - 1.2-1
 - Update to 1.2
 - Remove upstreamed olpc patches

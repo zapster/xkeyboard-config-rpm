@@ -1,0 +1,24 @@
+diff -up xkeyboard-config-1.2/rules/base.lists.part.usinet xkeyboard-config-1.2/rules/base.lists.part
+--- xkeyboard-config-1.2/rules/base.lists.part.usinet	2008-04-08 14:34:57.000000000 -0400
++++ xkeyboard-config-1.2/rules/base.lists.part	2008-04-08 14:35:26.000000000 -0400
+@@ -52,6 +52,7 @@
+               microsoftoffice microsoftmult \
+               mx1998 mx2500 mx2750 \
+               oretec \
++              pc105 \
+               presario propeller \
+               qtronix \
+               rapidaccess rapidaccess2 rapidaccess2a thinkpad thinkpad60 \
+diff -up xkeyboard-config-1.2/symbols/inet.usinet xkeyboard-config-1.2/symbols/inet
+--- xkeyboard-config-1.2/symbols/inet.usinet	2008-04-09 00:08:22.000000000 -0400
++++ xkeyboard-config-1.2/symbols/inet	2008-04-09 00:09:49.000000000 -0400
+@@ -2211,3 +2211,9 @@ xkb_symbols "classmate" {
+     key <I30>   {       [ XF86AudioRaiseVolume  ] };
+ };
+ 
++
++// Generic
++partial alphanumeric_keys
++xkb_symbols "pc105" {
++    include "inet(media_common)"
++};
