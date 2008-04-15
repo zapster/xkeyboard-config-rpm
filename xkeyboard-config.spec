@@ -4,7 +4,7 @@
 Summary: xkeyboard-config alternative xkb data files
 Name: xkeyboard-config
 Version: 1.2
-Release: 2%{?dist}
+Release: 3%{?dist}
 License: MIT
 Group: User Interface/X
 URL: http://www.x.org
@@ -82,6 +82,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/X11/xkb/rules/xorg.xml
 
 %changelog
+* Mon Apr 14 2008 Matthias Clasen  <mclasen@redhat.com> - 1.2-3
+- Also add back and forward keys to pc105 (#441398)
+
 * Wed Apr  9 2008 Matthias Clasen  <mclasen@redhat.com> - 1.2-2
 - Make pc105 have inet keys, not 100% correct, but better than
   having the kbd driver report "us+inet" which confused XKB and
