@@ -3,8 +3,8 @@
 
 Summary: xkeyboard-config alternative xkb data files
 Name: xkeyboard-config
-Version: 1.2
-Release: 3%{?dist}
+Version: 1.3
+Release: 1%{?dist}
 License: MIT
 Group: User Interface/X
 URL: http://www.x.org
@@ -82,6 +82,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/X11/xkb/rules/xorg.xml
 
 %changelog
+* Wed May 28 2008 Matthias Clasen  <mclasen@redhat.com> - 1.3-1
+- Update to 1.3
+
 * Mon Apr 14 2008 Matthias Clasen  <mclasen@redhat.com> - 1.2-3
 - Also add back and forward keys to pc105 (#441398)
 
