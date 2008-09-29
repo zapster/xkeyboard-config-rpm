@@ -4,7 +4,7 @@
 Summary: xkeyboard-config alternative xkb data files
 Name: xkeyboard-config
 Version: 1.3
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: MIT
 Group: User Interface/X
 URL: http://www.x.org
@@ -13,6 +13,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Source0: http://xlibs.freedesktop.org/xkbdesc/%{name}-%{version}.tar.bz2
 Patch1: olpc-xkeyboard-config-kz-group.patch
 Patch2: usinet.patch
+# Bug 241564, FDO bug 17786 (resolved, fixed)
+Patch3: xkeyboard-config-1.3-AC11-mapping-is.patch
 
 BuildArch: noarch
 
@@ -43,6 +45,7 @@ xkeyboard-config alternative xkb data files
 %setup -q
 %patch1 -p1 -b .kzgroup
 %patch2 -p1 -b .usinet
+%patch3 -p1 -b .AC11-mapping-is
 
 %build
 %configure \
@@ -82,6 +85,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/X11/xkb/rules/xorg.xml
 
 %changelog
+* Mon Sep 29 2008 Peter Hutterer  <peter.hutterer@redhat.com> - 1.3-2
+- xkeyboard-config-1.3-AC11-mapping-is.patch: fix AC11 mapping for icelandic
+  keyboard layout (#241564)
+
 * Wed May 28 2008 Matthias Clasen  <mclasen@redhat.com> - 1.3-1
 - Update to 1.3
 
