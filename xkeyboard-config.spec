@@ -4,7 +4,7 @@
 Summary: xkeyboard-config alternative xkb data files
 Name: xkeyboard-config
 Version: 1.4
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: MIT
 Group: User Interface/X
 URL: http://www.x.org
@@ -20,6 +20,7 @@ BuildRequires: pkgconfig
 BuildRequires: xorg-x11-util-macros
 BuildRequires: xkbcomp
 BuildRequires: perl(XML::Parser)
+BuildRequires: intltool
 BuildRequires: gettext
 
 # NOTE: Any packages that need xkbdata to be installed should be using
@@ -82,7 +83,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/X11/xkb/rules/xorg.xml
 
 %changelog
-* Wed Oct  1 2008 Matthias Clasen  <mclasen@redhat.com> - 1.4-1
+* Wed Oct  1 2008 Matthias Clasen  <mclasen@redhat.com> - 1.4-2
 - Update to 1.4
 
 * Mon Sep 29 2008 Peter Hutterer  <peter.hutterer@redhat.com> - 1.3-2
