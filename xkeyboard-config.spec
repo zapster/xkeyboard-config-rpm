@@ -4,7 +4,7 @@
 Summary: xkeyboard-config alternative xkb data files
 Name: xkeyboard-config
 Version: 1.4
-Release: 2%{?dist}
+Release: 3%{?dist}
 License: MIT
 Group: User Interface/X
 URL: http://www.x.org
@@ -13,6 +13,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Source0: http://xlibs.freedesktop.org/xkbdesc/%{name}-%{version}.tar.bz2
 Patch1: olpc-xkeyboard-config-kz-group.patch
 Patch2: usinet.patch
+# FDO Bug 17975 (FIXED), taken from git.
+Patch3: xkeyboard-config-1.4-tj-variant.patch
 
 BuildArch: noarch
 
@@ -44,6 +46,7 @@ xkeyboard-config alternative xkb data files
 %setup -q
 %patch1 -p1 -b .kzgroup
 %patch2 -p1 -b .usinet
+%patch3 -p1 -b .tj-variants
 
 %build
 %configure \
@@ -83,6 +86,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/X11/xkb/rules/xorg.xml
 
 %changelog
+* Tue Oct 14 2008 Peter Hutterer  <peter.hutterer@redhat.com> - 1.4-3
+- xkeyboard-config-1.4-tj-variant.patch: add legacy and basic tj layouts
+  (#455796)
+
 * Wed Oct  1 2008 Matthias Clasen  <mclasen@redhat.com> - 1.4-2
 - Update to 1.4
 
