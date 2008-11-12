@@ -94,7 +94,7 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 * Tue Nov 13 2008 Peter Hutterer  <peter.hutterer@redhat.com> - 1.4-5
 - xkeyboard-config-1.4-jp-tilde.patch: TLDE in jp is Zenkaku/Hankaku, and BKSL
-  should be bracket right/brace right.
+  should be bracket right/brace right (#469537).
 
 * Fri Oct 24 2008 Peter Hutterer  <peter.hutterer@redhat.com> - 1.4-4
 - xkeyboard-config-1.4-battery.patch: add XF86 syms for Battery, Bluetooth,
