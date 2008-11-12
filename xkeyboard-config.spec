@@ -4,7 +4,7 @@
 Summary: xkeyboard-config alternative xkb data files
 Name: xkeyboard-config
 Version: 1.4
-Release: 4%{?dist}
+Release: 5%{?dist}
 License: MIT
 Group: User Interface/X
 URL: http://www.x.org
@@ -17,6 +17,8 @@ Patch2: usinet.patch
 Patch3: xkeyboard-config-1.4-tj-variant.patch
 # Sent to svu, not committed yet (he's waiting for libX11 release)
 Patch4: xkeyboard-config-1.4-battery.patch
+# Sent to svu
+Patch5: xkeyboard-config-1.4-jp-tilde.patch
 
 BuildArch: noarch
 
@@ -50,6 +52,7 @@ xkeyboard-config alternative xkb data files
 %patch2 -p1 -b .usinet
 %patch3 -p1 -b .tj-variants
 %patch4 -p1 -b .battery
+%patch5 -p1 -b .jp-tilde
 
 %build
 %configure \
@@ -89,6 +92,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/X11/xkb/rules/xorg.xml
 
 %changelog
+* Tue Nov 13 2008 Peter Hutterer  <peter.hutterer@redhat.com> - 1.4-5
+- xkeyboard-config-1.4-jp-tilde.patch: TLDE in jp is Zenkaku/Hankaku, and BKSL
+  should be bracket right/brace right.
+
 * Fri Oct 24 2008 Peter Hutterer  <peter.hutterer@redhat.com> - 1.4-4
 - xkeyboard-config-1.4-battery.patch: add XF86 syms for Battery, Bluetooth,
   Wlan and UWB to usinet.

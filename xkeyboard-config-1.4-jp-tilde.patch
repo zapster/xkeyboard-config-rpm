@@ -1,0 +1,17 @@
+diff -up xkeyboard-config-1.4/symbols/jp.orig xkeyboard-config-1.4/symbols/jp
+--- xkeyboard-config-1.4/symbols/jp.orig	2008-11-11 11:19:41.000000000 +1000
++++ xkeyboard-config-1.4/symbols/jp	2008-11-11 11:37:53.000000000 +1000
+@@ -24,6 +24,13 @@ xkb_symbols "common" {
+ 	symbols[Group1]= [ Zenkaku_Hankaku, Kanji ]
+     };
+ 
++    key <TLDE> {
++	type[Group1]="PC_ALT_LEVEL2",
++	symbols[Group1]= [ Zenkaku_Hankaku, Kanji ]
++    };
++
++    key <BKSL> { [ bracketright, braceright ] };
++
+     key <AE01> { [ 1, exclam		] };
+     key <AE02> { [ 2, quotedbl		] };
+     key <AE03> { [ 3, numbersign	] };
