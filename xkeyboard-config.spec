@@ -1,13 +1,13 @@
 # INFO: Package contains data-only, no binaries, so no debuginfo is needed
 %define debug_package %{nil}
 
-Summary: xkeyboard-config alternative xkb data files
+Summary: X Keyboard Extension configuration data
 Name: xkeyboard-config
 Version: 1.4
-Release: 5%{?dist}
+Release: 6%{?dist}
 License: MIT
 Group: User Interface/X
-URL: http://www.x.org
+URL: http://www.freedesktop.org/wiki/Software/XKeyboardConfig
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0: http://xlibs.freedesktop.org/xkbdesc/%{name}-%{version}.tar.bz2
@@ -44,7 +44,9 @@ Provides: xkbdata
 Obsoletes: xorg-x11-xkbdata
 
 %description
-xkeyboard-config alternative xkb data files
+This package contains configuration data used by the X Keyboard Extension 
+(XKB), which allows selection of keyboard layouts when using a graphical 
+interface. 
 
 %prep
 %setup -q
@@ -92,6 +94,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/X11/xkb/rules/xorg.xml
 
 %changelog
+* Sat Nov 22 2008 Matthias Clasen <mclasen@redhat.com> - 1.4-6
+- Improve %%summary and %%description
+- Better URL
+
 * Tue Nov 13 2008 Peter Hutterer  <peter.hutterer@redhat.com> - 1.4-5
 - xkeyboard-config-1.4-jp-tilde.patch: TLDE in jp is Zenkaku/Hankaku, and BKSL
   should be bracket right/brace right (#469537).
