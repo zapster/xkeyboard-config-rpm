@@ -4,7 +4,7 @@
 Summary: X Keyboard Extension configuration data
 Name: xkeyboard-config
 Version: 1.4
-Release: 6%{?dist}
+Release: 7%{?dist}
 License: MIT
 Group: User Interface/X
 URL: http://www.freedesktop.org/wiki/Software/XKeyboardConfig
@@ -28,6 +28,7 @@ BuildRequires: xkbcomp
 BuildRequires: perl(XML::Parser)
 BuildRequires: intltool
 BuildRequires: gettext
+BuildRequires: git-core
 
 # NOTE: Any packages that need xkbdata to be installed should be using
 # the following "Requires: xkbdata" virtual provide, and not directly depending
@@ -49,12 +50,17 @@ This package contains configuration data used by the X Keyboard Extension
 interface. 
 
 %prep
-%setup -q
-%patch1 -p1 -b .kzgroup
-%patch2 -p1 -b .usinet
-%patch3 -p1 -b .tj-variants
-%patch4 -p1 -b .battery
-%patch5 -p1 -b .jp-tilde
+%setup -q -n %{name}-%{version}
+
+git init-db
+if [ -z "$GIT_COMMITTER_NAME" ]; then
+    git config user.email "x@fedoraproject.org"
+    git config user.name "Fedora X Ninjas"
+fi
+git add .
+git commit -a -q -m "%{version} baseline."
+
+git am -p1 $(awk '/^Patch.*:/ { print "%{_sourcedir}/"$2 }' %{_specdir}/%{name}.spec)
 
 %build
 %configure \
@@ -94,6 +100,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/X11/xkb/rules/xorg.xml
 
 %changelog
+* Mon Nov 24 2008 Peter Hutterer <peter.hutterer@redhat.com> - 1.4-7
+- Switch to using git patches, modelled after xorg-x11-server.
+- CVS remove unused patches.
+
 * Sat Nov 22 2008 Matthias Clasen <mclasen@redhat.com> - 1.4-6
 - Improve %%summary and %%description
 - Better URL
