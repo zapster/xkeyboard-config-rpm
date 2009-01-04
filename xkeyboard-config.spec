@@ -4,7 +4,7 @@
 Summary: X Keyboard Extension configuration data
 Name: xkeyboard-config
 Version: 1.4
-Release: 7%{?dist}
+Release: 8%{?dist}
 License: MIT
 Group: User Interface/X
 URL: http://www.freedesktop.org/wiki/Software/XKeyboardConfig
@@ -19,6 +19,8 @@ Patch3: xkeyboard-config-1.4-tj-variant.patch
 Patch4: xkeyboard-config-1.4-battery.patch
 # Sent to svu
 Patch5: xkeyboard-config-1.4-jp-tilde.patch
+# RH 470153, FDO Bug 18712 (fixed), taken from git
+Patch6: xkeyboard-config-1.4-abnt2.patch
 
 BuildArch: noarch
 
@@ -100,6 +102,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/X11/xkb/rules/xorg.xml
 
 %changelog
+* Mon Jan 05 2009 Peter Hutterer <peter.hutterer@redhat.com> - 1.4-8
+- xkeyboard-config-1.4-abnt2.patch: fix , and . mixup in abnt2 (#470153)
+
 * Mon Nov 24 2008 Peter Hutterer <peter.hutterer@redhat.com> - 1.4-7
 - Switch to using git patches, modelled after xorg-x11-server.
 - CVS remove unused patches.
