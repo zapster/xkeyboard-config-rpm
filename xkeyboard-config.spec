@@ -4,7 +4,7 @@
 Summary: X Keyboard Extension configuration data
 Name: xkeyboard-config
 Version: 1.4
-Release: 8%{?dist}
+Release: 9%{?dist}
 License: MIT
 Group: User Interface/X
 URL: http://www.freedesktop.org/wiki/Software/XKeyboardConfig
@@ -102,6 +102,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/X11/xkb/rules/xorg.xml
 
 %changelog
+* Tue Jan 27 2009 Bernie Innocenti <bernie@codewiz.org> 1.4-9
+- Backport fix for the it(olpc) layout
+
 * Mon Jan 05 2009 Peter Hutterer <peter.hutterer@redhat.com> - 1.4-8
 - xkeyboard-config-1.4-abnt2.patch: fix , and . mixup in abnt2 (#470153)
 
