@@ -3,24 +3,19 @@
 
 Summary: X Keyboard Extension configuration data
 Name: xkeyboard-config
-Version: 1.4
-Release: 9%{?dist}
+Version: 1.5
+Release: 1%{?dist}
 License: MIT
 Group: User Interface/X
 URL: http://www.freedesktop.org/wiki/Software/XKeyboardConfig
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0: http://xlibs.freedesktop.org/xkbdesc/%{name}-%{version}.tar.bz2
-Patch1: olpc-xkeyboard-config-kz-group.patch
 Patch2: usinet.patch
-# FDO Bug 17975 (FIXED), taken from git.
-Patch3: xkeyboard-config-1.4-tj-variant.patch
 # Sent to svu, not committed yet (he's waiting for libX11 release)
 Patch4: xkeyboard-config-1.4-battery.patch
 # Sent to svu
 Patch5: xkeyboard-config-1.4-jp-tilde.patch
-# RH 470153, FDO Bug 18712 (fixed), taken from git
-Patch6: xkeyboard-config-1.4-abnt2.patch
 
 BuildArch: noarch
 
@@ -102,6 +97,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/X11/xkb/rules/xorg.xml
 
 %changelog
+* Wed Jan 28 2009 Peter Hutterer <peter.hutterer@redhat.com> 1.5-1
+- xkeyboard-config 1.5
+
 * Tue Jan 27 2009 Bernie Innocenti <bernie@codewiz.org> 1.4-9
 - Backport fix for the it(olpc) layout
 
