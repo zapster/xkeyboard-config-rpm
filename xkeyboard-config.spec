@@ -4,7 +4,7 @@
 Summary: X Keyboard Extension configuration data
 Name: xkeyboard-config
 Version: 1.5
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: MIT
 Group: User Interface/X
 URL: http://www.freedesktop.org/wiki/Software/XKeyboardConfig
@@ -16,6 +16,8 @@ Patch2: usinet.patch
 Patch4: xkeyboard-config-1.4-battery.patch
 # Sent to svu
 Patch5: xkeyboard-config-1.4-jp-tilde.patch
+# Taken from upstream, remove with 1.6
+Patch6: xkeyboard-config-1.5-evdevkbds.patch
 
 BuildArch: noarch
 
@@ -97,6 +99,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/X11/xkb/rules/xorg.xml
 
 %changelog
+* Mon Feb 02 2009 Peter Hutterer <peter.hutterer@redhat.com> 1.5-2
+- xkeyboard-config-1.5-evdevkbds.patch: include model-specifics when using
+  evdev.
+
 * Mon Feb 02 2009 Peter Hutterer <peter.hutterer@redhat.com> 
 - purge obsolete patches.
 
