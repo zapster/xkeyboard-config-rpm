@@ -12,7 +12,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0: http://xlibs.freedesktop.org/xkbdesc/%{name}-%{version}.tar.bz2
 Patch2: usinet.patch
-# Sent to svu, not committed yet (he's waiting for libX11 release)
+# Sent to svu, partially committed as d0ff2e0d4ac, expect for 1.6
 Patch4: xkeyboard-config-1.4-battery.patch
 # Sent to svu
 Patch5: xkeyboard-config-1.4-jp-tilde.patch
@@ -97,6 +97,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/X11/xkb/rules/xorg.xml
 
 %changelog
+* Mon Feb 02 2009 Peter Hutterer <peter.hutterer@redhat.com> 
+- purge obsolete patches.
+
 * Wed Jan 28 2009 Peter Hutterer <peter.hutterer@redhat.com> 1.5-1
 - xkeyboard-config 1.5
 
