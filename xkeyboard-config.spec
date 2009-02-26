@@ -4,7 +4,7 @@
 Summary: X Keyboard Extension configuration data
 Name: xkeyboard-config
 Version: 1.5
-Release: 2%{?dist}
+Release: 3%{?dist}
 License: MIT
 Group: User Interface/X
 URL: http://www.freedesktop.org/wiki/Software/XKeyboardConfig
@@ -99,6 +99,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/X11/xkb/rules/xorg.xml
 
 %changelog
+* Thu Feb 26 2009 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.5-3
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_11_Mass_Rebuild
+
 * Mon Feb 02 2009 Peter Hutterer <peter.hutterer@redhat.com> 1.5-2
 - xkeyboard-config-1.5-evdevkbds.patch: include model-specifics when using
   evdev.
