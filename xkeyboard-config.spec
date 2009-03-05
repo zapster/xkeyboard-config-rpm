@@ -4,7 +4,7 @@
 Summary: X Keyboard Extension configuration data
 Name: xkeyboard-config
 Version: 1.5
-Release: 3%{?dist}
+Release: 4%{?dist}
 License: MIT
 Group: User Interface/X
 URL: http://www.freedesktop.org/wiki/Software/XKeyboardConfig
@@ -18,6 +18,7 @@ Patch4: xkeyboard-config-1.4-battery.patch
 Patch5: xkeyboard-config-1.4-jp-tilde.patch
 # Taken from upstream, remove with 1.6
 Patch6: xkeyboard-config-1.5-evdevkbds.patch
+Patch7: xkeyboard-config-1.5-suspend-hibernate.patch
 
 BuildArch: noarch
 
@@ -99,6 +100,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/X11/xkb/rules/xorg.xml
 
 %changelog
+* Thu Mar 05 2009 Peter Hutterer <peter.hutterer@redhat.com> - 1.5-4
+- xkeyboard-config-1.5-suspend-hibernate.patch: Map I213 to XF86Suspend, and
+  I255 to XF86Hibernate.
+
 * Thu Feb 26 2009 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.5-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_11_Mass_Rebuild
 
