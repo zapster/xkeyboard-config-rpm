@@ -4,7 +4,7 @@
 Summary: X Keyboard Extension configuration data
 Name: xkeyboard-config
 Version: 1.5
-Release: 4%{?dist}
+Release: 5%{?dist}
 License: MIT
 Group: User Interface/X
 URL: http://www.freedesktop.org/wiki/Software/XKeyboardConfig
@@ -19,6 +19,7 @@ Patch5: xkeyboard-config-1.4-jp-tilde.patch
 # Taken from upstream, remove with 1.6
 Patch6: xkeyboard-config-1.5-evdevkbds.patch
 Patch7: xkeyboard-config-1.5-suspend-hibernate.patch
+Patch8: xkeyboard-config-1.5-terminate.patch
 
 BuildArch: noarch
 
@@ -100,6 +101,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/X11/xkb/rules/xorg.xml
 
 %changelog
+* Tue Apr 07 2009 Peter Hutterer <peter.hutterer@redhat.com> - 1.5-5
+- xkeyboard-config-1.5-terminate.patch: remove Terminate_Server from default
+  pc symbols, add terminate:ctrl_alt_bksp.
+
 * Thu Mar 05 2009 Peter Hutterer <peter.hutterer@redhat.com> - 1.5-4
 - xkeyboard-config-1.5-suspend-hibernate.patch: Map I213 to XF86Suspend, and
   I255 to XF86Hibernate.
