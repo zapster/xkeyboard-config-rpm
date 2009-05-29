@@ -3,23 +3,14 @@
 
 Summary: X Keyboard Extension configuration data
 Name: xkeyboard-config
-Version: 1.5
-Release: 5%{?dist}
+Version: 1.6
+Release: 1%{?dist}
 License: MIT
 Group: User Interface/X
 URL: http://www.freedesktop.org/wiki/Software/XKeyboardConfig
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0: http://xlibs.freedesktop.org/xkbdesc/%{name}-%{version}.tar.bz2
-Patch2: usinet.patch
-# Sent to svu, partially committed as d0ff2e0d4ac, expect for 1.6
-Patch4: xkeyboard-config-1.4-battery.patch
-# Sent to svu
-Patch5: xkeyboard-config-1.4-jp-tilde.patch
-# Taken from upstream, remove with 1.6
-Patch6: xkeyboard-config-1.5-evdevkbds.patch
-Patch7: xkeyboard-config-1.5-suspend-hibernate.patch
-Patch8: xkeyboard-config-1.5-terminate.patch
 
 BuildArch: noarch
 
@@ -61,7 +52,7 @@ fi
 git add .
 git commit -a -q -m "%{version} baseline."
 
-git am -p1 $(awk '/^Patch.*:/ { print "%{_sourcedir}/"$2 }' %{_specdir}/%{name}.spec)
+#git am -p1 $(awk '/^Patch.*:/ { print "%{_sourcedir}/"$2 }' %{_specdir}/%{name}.spec)
 
 %build
 %configure \
@@ -101,6 +92,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/X11/xkb/rules/xorg.xml
 
 %changelog
+* Fri May 29 2009 Peter Hutterer <peter.hutterer@redhat.com> - 1.6-1
+- xkeyboard-config 1.6
+- Dropping all patches, merged upstream.
+
 * Tue Apr 07 2009 Peter Hutterer <peter.hutterer@redhat.com> - 1.5-5
 - xkeyboard-config-1.5-terminate.patch: remove Terminate_Server from default
   pc symbols, add terminate:ctrl_alt_bksp.
