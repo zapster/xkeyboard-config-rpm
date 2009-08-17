@@ -4,13 +4,17 @@
 Summary: X Keyboard Extension configuration data
 Name: xkeyboard-config
 Version: 1.6
-Release: 2%{?dist}
+Release: 3%{?dist}
 License: MIT
 Group: User Interface/X
 URL: http://www.freedesktop.org/wiki/Software/XKeyboardConfig
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0: http://xlibs.freedesktop.org/xkbdesc/%{name}-%{version}.tar.bz2
+
+# Both upstream
+Patch1: xkeyboard-config-1.6-caps-super.patch
+Patch2: xkeyboard-config-1.6-caps-hyper.patch
 
 BuildArch: noarch
 
@@ -52,7 +56,7 @@ fi
 git add .
 git commit -a -q -m "%{version} baseline."
 
-#git am -p1 $(awk '/^Patch.*:/ { print "%{_sourcedir}/"$2 }' %{_specdir}/%{name}.spec)
+git am -p1 $(awk '/^Patch.*:/ { print "%{_sourcedir}/"$2 }' %{_specdir}/%{name}.spec)
 
 %build
 %configure \
@@ -92,6 +96,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/X11/xkb/rules/xorg.xml
 
 %changelog
+* Tue Aug 18 2009 Peter Hutterer <peter.hutterer@redhat.com> 1.6-3
+- xkeyboard-config-1.6-caps-super.patch: add caps:super option (#505187)
+- xkeyboard-config-1.6-caps-hyper.patch: add caps:hyper option (#505187)
+
 * Mon Jul 27 2009 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.6-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_12_Mass_Rebuild
 
