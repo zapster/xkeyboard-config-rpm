@@ -1,10 +1,10 @@
 # Makefile for source rpm: xkeyboard-config
-# $Id: Makefile,v 1.2 2006/07/07 22:46:27 mharris Exp $
+# $Id: Makefile,v 1.3 2007/10/15 19:32:08 notting Exp $
 NAME := xkeyboard-config
 SPECFILE = $(NAME).spec
 
 define find-makefile-common
-for d in common ../common ../../common ; do if [ -f $$d/Makefile.common ] ; then if [ -f $$d/CVS/Root -a -w $$/Makefile.common ] ; then cd $$d ; cvs -Q update ; fi ; echo "$$d/Makefile.common" ; break ; fi ; done
+for d in common ../common ../../common ; do if [ -f $$d/Makefile.common ] ; then if [ -f $$d/CVS/Root -a -w $$d/Makefile.common ] ; then cd $$d ; cvs -Q update ; fi ; echo "$$d/Makefile.common" ; break ; fi ; done
 endef
 
 MAKEFILE_COMMON := $(shell $(find-makefile-common))
