@@ -4,7 +4,7 @@
 Summary: X Keyboard Extension configuration data
 Name: xkeyboard-config
 Version: 1.7
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: MIT
 Group: User Interface/X
 URL: http://www.freedesktop.org/wiki/Software/XKeyboardConfig
@@ -27,14 +27,14 @@ BuildRequires: git-core
 # on the specific package name that the data is part of.  This ensures
 # futureproofing of packaging in the event the package name changes, which
 # has happened often.
-Provides: xkbdata
+Provides: xkbdata = %{version}-%{release}
 # NOTE: We obsolete xorg-x11-xkbdata but currently intentionally do not
 # virtual-provide it.  The idea is to find out which packages have a
 # dependency on xorg-x11-xkbdata currently and fix them to require "xkbdata"
 # instead.  Later, if this causes a problem, which seems unlikely, we can
 # add a virtual provide for the old package name for compatibility, but
 # hopefully everything is using the virtual name and we can avoid that.
-Obsoletes: xorg-x11-xkbdata
+Obsoletes: xorg-x11-xkbdata < 1.0.1-9
 
 %description
 This package contains configuration data used by the X Keyboard Extension 
@@ -92,6 +92,12 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/X11/xkb/rules/xorg.xml
 
 %changelog
+* Wed Jan 06 2010 Peter Hutterer <peter.hutterer@redhat.com> 1.7-2
+- Specify version for xkbdata provides and obsoletes. According to the
+  changelog, the last xkbdata version was 1.0.1-8. Although xkeyboard-config
+  restarted the versioning, by now we're well above 1.0, so a simple
+  Provides is enough.
+
 * Wed Jan 06 2010 Peter Hutterer <peter.hutterer@redhat.com> 1.7-1
 - xkeyboard-config 1.7
 
