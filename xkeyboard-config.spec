@@ -3,8 +3,8 @@
 
 Summary: X Keyboard Extension configuration data
 Name: xkeyboard-config
-Version: 1.7
-Release: 3%{?dist}
+Version: 1.8
+Release: 1%{?dist}
 License: MIT
 Group: User Interface/X
 URL: http://www.freedesktop.org/wiki/Software/XKeyboardConfig
@@ -78,6 +78,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/X11/xkb/rules/xorg.xml
 
 %changelog
+* Mon Feb 01 2010 Peter Hutterer <peter.hutterer@redhat.com> 1.8-1
+- xkeyboard-config 1.8
+
 * Fri Jan 08 2010 Peter Hutterer <peter.hutterer@redhat.com> 1.7-3
 - Remove xkbdata provides. The xkbdata provides was introduced when
   xorg-x11-drv-xkbdata moved to xkeyboard-config. It's purpose was mainly to
