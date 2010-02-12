@@ -4,7 +4,7 @@
 Summary: X Keyboard Extension configuration data
 Name: xkeyboard-config
 Version: 1.8
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: MIT
 Group: User Interface/X
 URL: http://www.freedesktop.org/wiki/Software/XKeyboardConfig
@@ -55,9 +55,7 @@ rm -rf $RPM_BUILD_ROOT
 make install DESTDIR=$RPM_BUILD_ROOT
 # Remove unnecessary symlink
 rm -f $RPM_BUILD_ROOT%{_datadir}/X11/xkb/compiled
-
-# Bernie: remove locale stuff
-rm -rf $RPM_BUILD_ROOT%{_datadir}/locale
+%find_lang %{name} 
 
 # Create filelist
 {
@@ -71,13 +69,16 @@ rm -rf $RPM_BUILD_ROOT%{_datadir}/locale
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files -f files.list
+%files -f files.list -f %{name}.lang
 %defattr(-,root,root,-)
 %{_datadir}/X11/xkb/rules/xorg
 %{_datadir}/X11/xkb/rules/xorg.lst
 %{_datadir}/X11/xkb/rules/xorg.xml
 
 %changelog
+* Fri Feb 12 2010 Peter Hutterer <peter.hutterer@redhat.com> 1.8-2
+- Package the translations too (#563815).
+
 * Mon Feb 01 2010 Peter Hutterer <peter.hutterer@redhat.com> 1.8-1
 - xkeyboard-config 1.8
 
