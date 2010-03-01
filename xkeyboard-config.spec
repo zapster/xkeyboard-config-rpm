@@ -4,7 +4,7 @@
 Summary: X Keyboard Extension configuration data
 Name: xkeyboard-config
 Version: 1.8
-Release: 2%{?dist}
+Release: 3%{?dist}
 License: MIT
 Group: User Interface/X
 URL: http://www.freedesktop.org/wiki/Software/XKeyboardConfig
@@ -61,8 +61,8 @@ rm -f $RPM_BUILD_ROOT%{_datadir}/X11/xkb/compiled
 {
    FILESLIST=${PWD}/files.list
    pushd $RPM_BUILD_ROOT
-   find ./usr/share/X11 -type d | sed -e "s/^\./%dir /g" > $FILESLIST
-   find ./usr/share/X11 -type f | sed -e "s/^\.//g" >> $FILESLIST
+   find ./usr/share/X11/xkb -type d | sed -e "s/^\./%dir /g" > $FILESLIST
+   find ./usr/share/X11/xkb -type f | sed -e "s/^\.//g" >> $FILESLIST
    popd
 }
 
@@ -76,6 +76,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/X11/xkb/rules/xorg.xml
 
 %changelog
+* Tue Mar 02 2010 Peter Hutterer <peter.hutterer@redhat.com> 1.8-3
+- only package files in /usr/share/X11/xkb (#569400)
+
 * Fri Feb 12 2010 Peter Hutterer <peter.hutterer@redhat.com> 1.8-2
 - Package the translations too (#563815).
 
