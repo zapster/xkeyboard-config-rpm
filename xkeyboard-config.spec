@@ -4,13 +4,16 @@
 Summary: X Keyboard Extension configuration data
 Name: xkeyboard-config
 Version: 1.8
-Release: 3%{?dist}
+Release: 4%{?dist}
 License: MIT
 Group: User Interface/X
 URL: http://www.freedesktop.org/wiki/Software/XKeyboardConfig
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0: http://xlibs.freedesktop.org/xkbdesc/%{name}-%{version}.tar.bz2
+
+Patch02: 0001-Add-Euro-and-New-Shekel-sign-to-israeli-layout.patch
+Patch03: 0001-symbols-de-remove-BKSP-from-neo-layout.patch
 
 BuildArch: noarch
 
@@ -38,7 +41,7 @@ fi
 git add .
 git commit -a -q -m "%{version} baseline."
 
-#git am -p1 $(awk '/^Patch.*:/ { print "%{_sourcedir}/"$2 }' %{_specdir}/%{name}.spec)
+git am -p1 $(awk '/^Patch.*:/ { print "%{_sourcedir}/"$2 }' %{_specdir}/%{name}.spec)
 
 %build
 %configure \
@@ -76,6 +79,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/X11/xkb/rules/xorg.xml
 
 %changelog
+* Tue Apr 06 2010 Peter Hutterer <peter.hutterer@redhat.com> 1.8-4
+- Move F-12 patches forward, upstream is a bit unresponsive.
+
 * Tue Mar 02 2010 Peter Hutterer <peter.hutterer@redhat.com> 1.8-3
 - only package files in /usr/share/X11/xkb (#569400)
 
