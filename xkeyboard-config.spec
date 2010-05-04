@@ -4,7 +4,7 @@
 Summary: X Keyboard Extension configuration data
 Name: xkeyboard-config
 Version: 1.8
-Release: 4%{?dist}
+Release: 5%{?dist}
 License: MIT
 Group: User Interface/X
 URL: http://www.freedesktop.org/wiki/Software/XKeyboardConfig
@@ -14,6 +14,7 @@ Source0: http://xlibs.freedesktop.org/xkbdesc/%{name}-%{version}.tar.bz2
 
 Patch02: 0001-Add-Euro-and-New-Shekel-sign-to-israeli-layout.patch
 Patch03: 0001-symbols-de-remove-BKSP-from-neo-layout.patch
+Patch04: 0001-Remove-duplicate-BKSL-key-mappings-from-hin-wx-layou.patch
 
 BuildArch: noarch
 
@@ -79,6 +80,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/X11/xkb/rules/xorg.xml
 
 %changelog
+* Tue May 04 2010 Peter Hutterer <peter.hutterer@redhat.com> 1.8-5
+- 0001-Remove-duplicate-BKSL-key-mappings-from-hin-wx-layou.patch: remove
+  the duplicate mapping from hin-wx layout, it breaks iok (FDO 26947).
+
 * Tue Apr 06 2010 Peter Hutterer <peter.hutterer@redhat.com> 1.8-4
 - Move F-12 patches forward, upstream is a bit unresponsive.
 

@@ -1,0 +1,24 @@
+From 22efbcb2224384b349621dab38ebd446804baa61 Mon Sep 17 00:00:00 2001
+From: Parag Nemade <pnemade@redhat.com>
+Date: Mon, 8 Mar 2010 10:38:36 +0530
+Subject: [PATCH] Remove duplicate BKSL key mappings from hin-wx layout Signed-off-by: Parag Nemade<pnemade@redhat.com>
+
+---
+ symbols/in |    1 -
+ 1 files changed, 0 insertions(+), 1 deletions(-)
+
+diff --git a/symbols/in b/symbols/in
+index 67e0ba9..6c86b7c 100644
+--- a/symbols/in
++++ b/symbols/in
+@@ -1318,7 +1318,6 @@ xkb_symbols "hin-wx" {
+       key <AC09> {	 [      0x1000932,  0x1000962, 0x1000933, 0x100090C]	};
+       key <AC10> {	 [      semicolon, colon  		]	};
+       key <AC11> {	 [      quoteright, quotedbl 		]	};
+-      key <BKSL> {	 [      backslash,         bar  		]	};
+ 
+       key <AB01> {	 [      0x1000901,   0x100093C, 0x100093D, 0x1000950]   };
+       key <AB02> {       [      0x1000926,   0x1000927      ]       };
+-- 
+1.6.6.1
+
