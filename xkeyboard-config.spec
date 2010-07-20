@@ -4,12 +4,10 @@
 Summary: X Keyboard Extension configuration data
 Name: xkeyboard-config
 Version: 1.8
-Release: 5%{?dist}
+Release: 6%{?dist}
 License: MIT
 Group: User Interface/X
 URL: http://www.freedesktop.org/wiki/Software/XKeyboardConfig
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
-
 Source0: http://xlibs.freedesktop.org/xkbdesc/%{name}-%{version}.tar.bz2
 
 Patch02: 0001-Add-Euro-and-New-Shekel-sign-to-israeli-layout.patch
@@ -51,12 +49,11 @@ git am -p1 $(awk '/^Patch.*:/ { print "%{_sourcedir}/"$2 }' %{_specdir}/%{name}.
     --disable-xkbcomp-symlink \
     --with-xkb-rules-symlink=xorg
 
-make
+make %{?_smp_mflags}
 
 %install
-rm -rf $RPM_BUILD_ROOT
+make install DESTDIR=$RPM_BUILD_ROOT INSTALL="install -p"
 
-make install DESTDIR=$RPM_BUILD_ROOT
 # Remove unnecessary symlink
 rm -f $RPM_BUILD_ROOT%{_datadir}/X11/xkb/compiled
 %find_lang %{name} 
@@ -65,21 +62,22 @@ rm -f $RPM_BUILD_ROOT%{_datadir}/X11/xkb/compiled
 {
    FILESLIST=${PWD}/files.list
    pushd $RPM_BUILD_ROOT
-   find ./usr/share/X11/xkb -type d | sed -e "s/^\./%dir /g" > $FILESLIST
-   find ./usr/share/X11/xkb -type f | sed -e "s/^\.//g" >> $FILESLIST
+   find .%{_datadir}/X11/xkb -type d | sed -e "s/^\./%dir /g" > $FILESLIST
+   find .%{_datadir}/X11/xkb -type f | sed -e "s/^\.//g" >> $FILESLIST
    popd
 }
 
-%clean
-rm -rf $RPM_BUILD_ROOT
-
 %files -f files.list -f %{name}.lang
 %defattr(-,root,root,-)
+%doc AUTHORS README NEWS TODO COPYING CREDITS docs/README.* docs/HOWTO.*
 %{_datadir}/X11/xkb/rules/xorg
 %{_datadir}/X11/xkb/rules/xorg.lst
 %{_datadir}/X11/xkb/rules/xorg.xml
 
 %changelog
+* Tue Jul 20 2010 Peter Hutterer <peter.hutterer@redhat.com> 1.8-6
+- spec file cleanup. Patch by Parag An (#226562)
+
 * Tue May 04 2010 Peter Hutterer <peter.hutterer@redhat.com> 1.8-5
 - 0001-Remove-duplicate-BKSL-key-mappings-from-hin-wx-layou.patch: remove
   the duplicate mapping from hin-wx layout, it breaks iok (FDO 26947).
