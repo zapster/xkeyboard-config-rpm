@@ -3,16 +3,12 @@
 
 Summary: X Keyboard Extension configuration data
 Name: xkeyboard-config
-Version: 1.8
-Release: 6%{?dist}
+Version: 1.9
+Release: 1%{?dist}
 License: MIT
 Group: User Interface/X
 URL: http://www.freedesktop.org/wiki/Software/XKeyboardConfig
-Source0: http://xlibs.freedesktop.org/xkbdesc/%{name}-%{version}.tar.bz2
-
-Patch02: 0001-Add-Euro-and-New-Shekel-sign-to-israeli-layout.patch
-Patch03: 0001-symbols-de-remove-BKSP-from-neo-layout.patch
-Patch04: 0001-Remove-duplicate-BKSL-key-mappings-from-hin-wx-layou.patch
+Source0: ftp://ftp.x.org/pub/individual/data/%{name}/%{name}-%{version}.tar.bz2
 
 BuildArch: noarch
 
@@ -29,6 +25,15 @@ This package contains configuration data used by the X Keyboard Extension
 (XKB), which allows selection of keyboard layouts when using a graphical 
 interface. 
 
+%package devel
+Summary: Development files for %{name}
+Group: User Interface/X
+Requires: %{name} = %{version}-%{release}
+Requires: pkgconfig
+
+%description devel
+%{name} development package
+
 %prep
 %setup -q -n %{name}-%{version}
 
@@ -40,7 +45,7 @@ fi
 git add .
 git commit -a -q -m "%{version} baseline."
 
-git am -p1 $(awk '/^Patch.*:/ { print "%{_sourcedir}/"$2 }' %{_specdir}/%{name}.spec)
+#git am -p1 $(awk '/^Patch.*:/ { print "%{_sourcedir}/"$2 }' %{_specdir}/%{name}.spec)
 
 %build
 %configure \
@@ -74,7 +79,17 @@ rm -f $RPM_BUILD_ROOT%{_datadir}/X11/xkb/compiled
 %{_datadir}/X11/xkb/rules/xorg.lst
 %{_datadir}/X11/xkb/rules/xorg.xml
 
+%files devel
+%defattr(-,root,root,-)
+%{_datadir}/pkgconfig/xkeyboard-config.pc
+
 %changelog
+* Mon Aug 16 2010 Peter Hutterer <peter.hutterer@redhat.com> 1.9-1
+- xkeyboard-config 1.9
+- update Source URL, hosted on x.org now.
+- add -devel package for pkgconfig file added in 1.9.
+- drop upstreamed patches.
+
 * Tue Jul 20 2010 Peter Hutterer <peter.hutterer@redhat.com> 1.8-6
 - spec file cleanup. Patch by Parag An (#226562)
 
