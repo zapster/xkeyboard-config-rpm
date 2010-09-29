@@ -3,7 +3,7 @@
 
 Summary: X Keyboard Extension configuration data
 Name: xkeyboard-config
-Version: 1.9
+Version: 2.0
 Release: 1%{?dist}
 License: MIT
 Group: User Interface/X
@@ -84,6 +84,9 @@ rm -f $RPM_BUILD_ROOT%{_datadir}/X11/xkb/compiled
 %{_datadir}/pkgconfig/xkeyboard-config.pc
 
 %changelog
+* Wed Sep 29 2010 Peter Hutterer <peter.hutterer@redhat.com> 2.0-1
+- xkeyboard-config 2.0
+
 * Mon Aug 16 2010 Peter Hutterer <peter.hutterer@redhat.com> 1.9-1
 - xkeyboard-config 1.9
 - update Source URL, hosted on x.org now.
