@@ -3,8 +3,8 @@
 
 Summary: X Keyboard Extension configuration data
 Name: xkeyboard-config
-Version: 2.0
-Release: 2%{?dist}
+Version: 2.1
+Release: 1%{?dist}
 License: MIT
 Group: User Interface/X
 URL: http://www.freedesktop.org/wiki/Software/XKeyboardConfig
@@ -19,8 +19,6 @@ BuildRequires: perl(XML::Parser)
 BuildRequires: intltool
 BuildRequires: gettext
 BuildRequires: git-core
-
-Patch0: 0001-Clean-up-touchpad-key-definitions.patch
 
 %description
 This package contains configuration data used by the X Keyboard Extension 
@@ -38,7 +36,6 @@ Requires: pkgconfig
 
 %prep
 %setup -q -n %{name}-%{version}
-%patch0 -p1 -b .touchpad
 
 git init-db
 if [ -z "$GIT_COMMITTER_NAME" ]; then
@@ -87,6 +84,9 @@ rm -f $RPM_BUILD_ROOT%{_datadir}/X11/xkb/compiled
 %{_datadir}/pkgconfig/xkeyboard-config.pc
 
 %changelog
+* Thu Jan 27 2011 Peter Hutterer <peter.hutterer@redhat.com> 2.1-1
+- xkeyboard-config 2.1
+
 * Thu Nov 25 2010 Bastien Nocera <bnocera@redhat.com> 2.0-2
 - Use new touchpad toggle keysyms
 
