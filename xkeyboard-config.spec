@@ -1,14 +1,23 @@
 # INFO: Package contains data-only, no binaries, so no debuginfo is needed
 %define debug_package %{nil}
 
+%global gitdate 20110311
+%global gitversion 9333b2f3
+
 Summary: X Keyboard Extension configuration data
 Name: xkeyboard-config
-Version: 2.1
-Release: 2%{?dist}
+Version: 2.1.99
+Release: 1%{?gitdate:.%{gitdate}git%{gitversion}}%{dist}
 License: MIT
 Group: User Interface/X
 URL: http://www.freedesktop.org/wiki/Software/XKeyboardConfig
-Source0: ftp://ftp.x.org/pub/individual/data/%{name}/%{name}-%{version}.tar.bz2
+%if 0%{?gitdate}
+Source0:    %{name}-%{gitdate}.tar.bz2
+Source1:    make-git-snapshot.sh
+Source2:    commitid
+%else
+Source0:    ftp://ftp.x.org/pub/individual/data/%{name}/%{name}-%{version}.tar.bz2
+%endif
 
 BuildArch: noarch
 
@@ -19,6 +28,8 @@ BuildRequires: perl(XML::Parser)
 BuildRequires: intltool
 BuildRequires: gettext
 BuildRequires: git-core
+BuildRequires: automake autoconf libtool pkgconfig
+BuildRequires: glib2-devel
 
 %description
 This package contains configuration data used by the X Keyboard Extension 
@@ -35,19 +46,28 @@ Requires: pkgconfig
 %{name} development package
 
 %prep
-%setup -q -n %{name}-%{version}
+%setup -q -n %{name}-%{?gitdate:%{gitdate}}%{!?gitdate:%{version}}
 
-git init-db
+%if 0%{?gitdate}
+git checkout -b fedora
+sed -i 's/git/&+ssh/' .git/config
 if [ -z "$GIT_COMMITTER_NAME" ]; then
     git config user.email "x@fedoraproject.org"
     git config user.name "Fedora X Ninjas"
 fi
-git add .
-git commit -a -q -m "%{version} baseline."
+%else
+git init
+if [ -z "$GIT_COMMITTER_NAME" ]; then
+    git config user.email "x@fedoraproject.org"
+    git config user.name "Fedora X Ninjas"
+fi
+%endif
 
 #git am -p1 $(awk '/^Patch.*:/ { print "%{_sourcedir}/"$2 }' %{_specdir}/%{name}.spec)
 
 %build
+intltoolize
+autoreconf -v --install || exit 1
 %configure \
     --enable-compat-rules \
     --with-xkb-base=%{_datadir}/X11/xkb \
@@ -84,6 +104,10 @@ rm -f $RPM_BUILD_ROOT%{_datadir}/X11/xkb/compiled
 %{_datadir}/pkgconfig/xkeyboard-config.pc
 
 %changelog
+* Fri Mar 11 2011 Peter Hutterer <peter.hutterer@redhat.com> 2.1.99-1.20110311-git9333b2f3
+- add bits required to build from git
+- update to today's git snapshot
+
 * Mon Feb 07 2011 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 2.1-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_15_Mass_Rebuild
 
