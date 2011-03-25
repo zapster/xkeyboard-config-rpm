@@ -66,6 +66,7 @@ fi
 intltoolize
 autoreconf -v --install || exit 1
 %configure \
+    --disable-runtime-deps \
     --enable-compat-rules \
     --with-xkb-base=%{_datadir}/X11/xkb \
     --disable-xkbcomp-symlink \
