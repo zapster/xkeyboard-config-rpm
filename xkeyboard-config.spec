@@ -1,13 +1,10 @@
 # INFO: Package contains data-only, no binaries, so no debuginfo is needed
 %define debug_package %{nil}
 
-%global gitdate 20110311
-%global gitversion 9333b2f3
-
 Summary: X Keyboard Extension configuration data
 Name: xkeyboard-config
 Version: 2.1.99
-Release: 1%{?gitdate:.%{gitdate}git%{gitversion}}%{dist}
+Release: 2%{?dist}
 License: MIT
 Group: User Interface/X
 URL: http://www.freedesktop.org/wiki/Software/XKeyboardConfig
@@ -104,6 +101,9 @@ rm -f $RPM_BUILD_ROOT%{_datadir}/X11/xkb/compiled
 %{_datadir}/pkgconfig/xkeyboard-config.pc
 
 %changelog
+* Fri Mar 25 2011 Matthias Clasen <mclasen@redhat.com> - 2.1.99-2
+- Update to 2.1.99 release
+
 * Fri Mar 11 2011 Peter Hutterer <peter.hutterer@redhat.com> 2.1.99-1.20110311-git9333b2f3
 - add bits required to build from git
 - update to today's git snapshot
