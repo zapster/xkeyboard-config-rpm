@@ -1,10 +1,13 @@
 # INFO: Package contains data-only, no binaries, so no debuginfo is needed
 %define debug_package %{nil}
 
+%global gitdate 20110311
+%global gitversion 9333b2f3
+
 Summary: X Keyboard Extension configuration data
 Name: xkeyboard-config
 Version: 2.1.99
-Release: 2%{?dist}
+Release: 1%{?gitdate:.%{gitdate}git%{gitversion}}%{dist}
 License: MIT
 Group: User Interface/X
 URL: http://www.freedesktop.org/wiki/Software/XKeyboardConfig
