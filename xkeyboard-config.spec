@@ -6,7 +6,7 @@
 
 Summary: X Keyboard Extension configuration data
 Name: xkeyboard-config
-Version: 2.2
+Version: 2.2.1
 Release: 1%{?gitdate:.%{gitdate}git%{gitversion}}%{dist}
 License: MIT
 Group: User Interface/X
@@ -30,6 +30,7 @@ BuildRequires: gettext
 BuildRequires: git-core
 BuildRequires: automake autoconf libtool pkgconfig
 BuildRequires: glib2-devel
+BuildRequires: xorg-x11-proto-devel libX11-devel
 
 %description
 This package contains configuration data used by the X Keyboard Extension 
@@ -69,7 +70,6 @@ fi
 intltoolize
 autoreconf -v --install || exit 1
 %configure \
-    --disable-runtime-deps \
     --enable-compat-rules \
     --with-xkb-base=%{_datadir}/X11/xkb \
     --disable-xkbcomp-symlink \
@@ -105,6 +105,10 @@ rm -f $RPM_BUILD_ROOT%{_datadir}/X11/xkb/compiled
 %{_datadir}/pkgconfig/xkeyboard-config.pc
 
 %changelog
+* Wed Apr 06 2011 Peter Hutterer <peter.hutterer@redhat.com> 2.2.1-1
+- xkeyboard-config 2.2.1, 2.2 had a broken configure check
+- Add new BR and don't disable build/runtime deps checks
+
 * Mon Apr 04 2011 Peter Hutterer <peter.hutterer@redhat.com> 2.2-1
 - xkeyboard-config 2.2
 - reinstate the git bits removed in previous commit
