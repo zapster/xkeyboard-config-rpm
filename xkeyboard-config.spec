@@ -1,13 +1,13 @@
 # INFO: Package contains data-only, no binaries, so no debuginfo is needed
 %define debug_package %{nil}
 
-%global gitdate 20110415
-%global gitversion 19a0026b5
+#global gitdate 20110415
+#global gitversion 19a0026b5
 
 Summary: X Keyboard Extension configuration data
 Name: xkeyboard-config
-Version: 2.2.1
-Release: 2%{?gitdate:.%{gitdate}git%{gitversion}}%{dist}
+Version: 2.3
+Release: 1%{?gitdate:.%{gitdate}git%{gitversion}}%{dist}
 License: MIT
 Group: User Interface/X
 URL: http://www.freedesktop.org/wiki/Software/XKeyboardConfig
@@ -105,6 +105,9 @@ rm -f $RPM_BUILD_ROOT%{_datadir}/X11/xkb/compiled
 %{_datadir}/pkgconfig/xkeyboard-config.pc
 
 %changelog
+* Thu Jun 02 2011 Peter Hutterer <peter.hutterer@redhat.com> 2.3-1
+- xkeyboard-config 2.3
+
 * Fri Apr 15 2011 Peter Hutterer <peter.hutterer@redhat.com> 2.2.1-2.20110415git19a0026b5
 - Snapshot from git to fix French Canadian layouts (#694472)
 
