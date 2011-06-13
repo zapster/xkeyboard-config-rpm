@@ -7,7 +7,7 @@
 Summary: X Keyboard Extension configuration data
 Name: xkeyboard-config
 Version: 2.3
-Release: 1%{?gitdate:.%{gitdate}git%{gitversion}}%{dist}
+Release: 2%{?gitdate:.%{gitdate}git%{gitversion}}%{dist}
 License: MIT
 Group: User Interface/X
 URL: http://www.freedesktop.org/wiki/Software/XKeyboardConfig
@@ -18,6 +18,7 @@ Source2:    commitid
 %else
 Source0:    ftp://ftp.x.org/pub/individual/data/%{name}/%{name}-%{version}.tar.bz2
 %endif
+Patch01:    0001-Use-XSL-to-generate-man-page-from-the-rules-XML.patch
 
 BuildArch: noarch
 
@@ -31,6 +32,7 @@ BuildRequires: git-core
 BuildRequires: automake autoconf libtool pkgconfig
 BuildRequires: glib2-devel
 BuildRequires: xorg-x11-proto-devel libX11-devel
+BuildRequires: libxslt
 
 %description
 This package contains configuration data used by the X Keyboard Extension 
@@ -56,15 +58,18 @@ if [ -z "$GIT_COMMITTER_NAME" ]; then
     git config user.email "x@fedoraproject.org"
     git config user.name "Fedora X Ninjas"
 fi
+git commit -am "%{name} %{version}"
 %else
 git init
 if [ -z "$GIT_COMMITTER_NAME" ]; then
     git config user.email "x@fedoraproject.org"
     git config user.name "Fedora X Ninjas"
 fi
+git add .
+git commit -a -q -m "%{name} %{version} baseline."
 %endif
 
-#git am -p1 $(awk '/^Patch.*:/ { print "%{_sourcedir}/"$2 }' %{_specdir}/%{name}.spec)
+git am -p1 $(awk '/^Patch.*:/ { print "%{_sourcedir}/"$2 }' %{_specdir}/%{name}.spec)
 
 %build
 intltoolize
@@ -99,12 +104,18 @@ rm -f $RPM_BUILD_ROOT%{_datadir}/X11/xkb/compiled
 %{_datadir}/X11/xkb/rules/xorg
 %{_datadir}/X11/xkb/rules/xorg.lst
 %{_datadir}/X11/xkb/rules/xorg.xml
+%{_mandir}/man7/xkeyboard-config.*
 
 %files devel
 %defattr(-,root,root,-)
 %{_datadir}/pkgconfig/xkeyboard-config.pc
 
 %changelog
+* Tue Jun 14 2011 Peter Hutterer <peter.hutterer@redhat.com> 2.3-2
+- Add 0001-Use-XSL-to-generate-man-page-from-the-rules-XML.patch, ship
+  man-page
+- Fix up broken git repo initialization when building from a tarball
+
 * Thu Jun 02 2011 Peter Hutterer <peter.hutterer@redhat.com> 2.3-1
 - xkeyboard-config 2.3
 
