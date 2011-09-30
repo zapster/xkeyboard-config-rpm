@@ -6,8 +6,8 @@
 
 Summary: X Keyboard Extension configuration data
 Name: xkeyboard-config
-Version: 2.3
-Release: 2%{?gitdate:.%{gitdate}git%{gitversion}}%{dist}
+Version: 2.4.1
+Release: 1%{?gitdate:.%{gitdate}git%{gitversion}}%{dist}
 License: MIT
 Group: User Interface/X
 URL: http://www.freedesktop.org/wiki/Software/XKeyboardConfig
@@ -16,9 +16,8 @@ Source0:    %{name}-%{gitdate}.tar.bz2
 Source1:    make-git-snapshot.sh
 Source2:    commitid
 %else
-Source0:    ftp://ftp.x.org/pub/individual/data/%{name}/%{name}-%{version}.tar.bz2
+Source0: http://xorg.freedesktop.org/archive/individual/data/%{name}-%{version}.tar.bz2
 %endif
-Patch01:    0001-Use-XSL-to-generate-man-page-from-the-rules-XML.patch
 
 BuildArch: noarch
 
@@ -69,7 +68,7 @@ git add .
 git commit -a -q -m "%{name} %{version} baseline."
 %endif
 
-git am -p1 $(awk '/^Patch.*:/ { print "%{_sourcedir}/"$2 }' %{_specdir}/%{name}.spec)
+#git am -p1 $(awk '/^Patch.*:/ { print "%{_sourcedir}/"$2 }' %{_specdir}/%{name}.spec)
 
 %build
 intltoolize
@@ -111,6 +110,11 @@ rm -f $RPM_BUILD_ROOT%{_datadir}/X11/xkb/compiled
 %{_datadir}/pkgconfig/xkeyboard-config.pc
 
 %changelog
+* Wed Oct 05 2011 Peter Hutterer <peter.hutterer@redhat.com> 2.4.1-1
+- xkeyboard-config 2.4.1
+- change source URL from ftp.x.org to http://xorg.freedesktop.org, ftp takes
+  too long to update
+
 * Tue Jun 14 2011 Peter Hutterer <peter.hutterer@redhat.com> 2.3-2
 - Add 0001-Use-XSL-to-generate-man-page-from-the-rules-XML.patch, ship
   man-page
