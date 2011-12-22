@@ -7,7 +7,7 @@
 Summary: X Keyboard Extension configuration data
 Name: xkeyboard-config
 Version: 2.4.1
-Release: 1%{?gitdate:.%{gitdate}git%{gitversion}}%{dist}
+Release: 2%{?gitdate:.%{gitdate}git%{gitversion}}%{dist}
 License: MIT
 Group: User Interface/X
 URL: http://www.freedesktop.org/wiki/Software/XKeyboardConfig
@@ -18,6 +18,8 @@ Source2:    commitid
 %else
 Source0: http://xorg.freedesktop.org/archive/individual/data/%{name}-%{version}.tar.bz2
 %endif
+
+Patch01: 0001-rules-Serbian-keyboards-are-cyrillic-by-default.patch
 
 BuildArch: noarch
 
@@ -68,7 +70,7 @@ git add .
 git commit -a -q -m "%{name} %{version} baseline."
 %endif
 
-#git am -p1 $(awk '/^Patch.*:/ { print "%{_sourcedir}/"$2 }' %{_specdir}/%{name}.spec)
+git am -p1 $(awk '/^Patch.*:/ { print "%{_sourcedir}/"$2 }' %{_specdir}/%{name}.spec)
 
 %build
 intltoolize
@@ -110,6 +112,9 @@ rm -f $RPM_BUILD_ROOT%{_datadir}/X11/xkb/compiled
 %{_datadir}/pkgconfig/xkeyboard-config.pc
 
 %changelog
+* Thu Dec 22 2011 Peter Hutterer <peter.hutterer@redhat.com> 2.4.1-2
+- Change Serbian layouts to mark the cyrillic ones (#769751)
+
 * Wed Oct 05 2011 Peter Hutterer <peter.hutterer@redhat.com> 2.4.1-1
 - xkeyboard-config 2.4.1
 - change source URL from ftp.x.org to http://xorg.freedesktop.org, ftp takes
