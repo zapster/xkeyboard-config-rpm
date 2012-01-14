@@ -7,7 +7,7 @@
 Summary: X Keyboard Extension configuration data
 Name: xkeyboard-config
 Version: 2.4.1
-Release: 2%{?gitdate:.%{gitdate}git%{gitversion}}%{dist}
+Release: 3%{?gitdate:.%{gitdate}git%{gitversion}}%{dist}
 License: MIT
 Group: User Interface/X
 URL: http://www.freedesktop.org/wiki/Software/XKeyboardConfig
@@ -112,6 +112,9 @@ rm -f $RPM_BUILD_ROOT%{_datadir}/X11/xkb/compiled
 %{_datadir}/pkgconfig/xkeyboard-config.pc
 
 %changelog
+* Sat Jan 14 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 2.4.1-3
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_17_Mass_Rebuild
+
 * Thu Dec 22 2011 Peter Hutterer <peter.hutterer@redhat.com> 2.4.1-2
 - Change Serbian layouts to mark the cyrillic ones (#769751)
 
