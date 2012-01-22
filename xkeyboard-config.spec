@@ -6,8 +6,8 @@
 
 Summary: X Keyboard Extension configuration data
 Name: xkeyboard-config
-Version: 2.4.1
-Release: 4%{?gitdate:.%{gitdate}git%{gitversion}}%{dist}
+Version: 2.5
+Release: 1%{?gitdate:.%{gitdate}git%{gitversion}}%{dist}
 License: MIT
 Group: User Interface/X
 URL: http://www.freedesktop.org/wiki/Software/XKeyboardConfig
@@ -18,9 +18,6 @@ Source2:    commitid
 %else
 Source0: http://xorg.freedesktop.org/archive/individual/data/%{name}-%{version}.tar.bz2
 %endif
-
-Patch01: 0001-rules-Serbian-keyboards-are-cyrillic-by-default.patch
-Patch02: 0001-Hide-ClearGrab-CloseGrabs-actions-behind-an-option.patch
 
 BuildArch: noarch
 
@@ -71,7 +68,7 @@ git add .
 git commit -a -q -m "%{name} %{version} baseline."
 %endif
 
-git am -p1 $(awk '/^Patch.*:/ { print "%{_sourcedir}/"$2 }' %{_specdir}/%{name}.spec)
+#git am -p1 $(awk '/^Patch.*:/ { print "%{_sourcedir}/"$2 }' %{_specdir}/%{name}.spec)
 
 %build
 intltoolize
@@ -113,6 +110,9 @@ rm -f $RPM_BUILD_ROOT%{_datadir}/X11/xkb/compiled
 %{_datadir}/pkgconfig/xkeyboard-config.pc
 
 %changelog
+* Mon Jan 23 2012 Peter Hutterer <peter.hutterer@redhat.com> 2.5-1
+- xkeyboard-config 2.5
+
 * Thu Jan 19 2012 Peter Hutterer <peter.hutterer@redhat.com> 2.4.1-4
 - Move Ungrab and ClearGrab from the default layout to option
   grab:break_actions (#783044)
