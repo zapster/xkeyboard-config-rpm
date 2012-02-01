@@ -6,7 +6,7 @@
 
 Summary: X Keyboard Extension configuration data
 Name: xkeyboard-config
-Version: 2.5
+Version: 2.5.1
 Release: 1%{?gitdate:.%{gitdate}git%{gitversion}}%{dist}
 License: MIT
 Group: User Interface/X
@@ -110,6 +110,9 @@ rm -f $RPM_BUILD_ROOT%{_datadir}/X11/xkb/compiled
 %{_datadir}/pkgconfig/xkeyboard-config.pc
 
 %changelog
+* Thu Feb 02 2012 Peter Hutterer <peter.hutterer@redhat.com> 2.5.1-1
+- xkeyboard-config 2.5.1
+
 * Mon Jan 23 2012 Peter Hutterer <peter.hutterer@redhat.com> 2.5-1
 - xkeyboard-config 2.5
 
