@@ -7,7 +7,7 @@
 Summary: X Keyboard Extension configuration data
 Name: xkeyboard-config
 Version: 2.5.1
-Release: 1%{?gitdate:.%{gitdate}git%{gitversion}}%{dist}
+Release: 2%{?gitdate:.%{gitdate}git%{gitversion}}%{dist}
 License: MIT
 Group: User Interface/X
 URL: http://www.freedesktop.org/wiki/Software/XKeyboardConfig
@@ -18,6 +18,8 @@ Source2:    commitid
 %else
 Source0: http://xorg.freedesktop.org/archive/individual/data/%{name}-%{version}.tar.bz2
 %endif
+# https://bugs.freedesktop.org/show_bug.cgi?id=50064
+Patch0: olpc-azerty-fixes.patch
 
 BuildArch: noarch
 
@@ -69,6 +71,7 @@ git commit -a -q -m "%{name} %{version} baseline."
 %endif
 
 #git am -p1 $(awk '/^Patch.*:/ { print "%{_sourcedir}/"$2 }' %{_specdir}/%{name}.spec)
+%patch0 -p1 -b .azerty
 
 %build
 intltoolize
@@ -110,6 +113,9 @@ rm -f $RPM_BUILD_ROOT%{_datadir}/X11/xkb/compiled
 %{_datadir}/pkgconfig/xkeyboard-config.pc
 
 %changelog
+* Wed May 23 2012 Peter Robinson <pbrobinson@fedoraproject.org> - 2.5.1-2
+- Add upstream patch to fix OLPC azerty keyboard
+
 * Thu Feb 02 2012 Peter Hutterer <peter.hutterer@redhat.com> 2.5.1-1
 - xkeyboard-config 2.5.1
 
