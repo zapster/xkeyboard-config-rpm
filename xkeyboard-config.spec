@@ -6,8 +6,8 @@
 
 Summary: X Keyboard Extension configuration data
 Name: xkeyboard-config
-Version: 2.5.1
-Release: 2%{?gitdate:.%{gitdate}git%{gitversion}}%{dist}
+Version: 2.6
+Release: 1%{?gitdate:.%{gitdate}git%{gitversion}}%{dist}
 License: MIT
 Group: User Interface/X
 URL: http://www.freedesktop.org/wiki/Software/XKeyboardConfig
@@ -16,10 +16,8 @@ Source0:    %{name}-%{gitdate}.tar.bz2
 Source1:    make-git-snapshot.sh
 Source2:    commitid
 %else
-Source0: http://xorg.freedesktop.org/archive/individual/data/%{name}-%{version}.tar.bz2
+Source0: http://xorg.freedesktop.org/archive/individual/data/xkeyboard-config/%{name}-%{version}.tar.bz2
 %endif
-# https://bugs.freedesktop.org/show_bug.cgi?id=50064
-Patch0: olpc-azerty-fixes.patch
 
 BuildArch: noarch
 
@@ -71,11 +69,9 @@ git commit -a -q -m "%{name} %{version} baseline."
 %endif
 
 #git am -p1 $(awk '/^Patch.*:/ { print "%{_sourcedir}/"$2 }' %{_specdir}/%{name}.spec)
-%patch0 -p1 -b .azerty
 
 %build
-intltoolize
-autoreconf -v --install || exit 1
+AUTOPOINT="intltoolize --automake --copy" autoreconf -v --force --install || exit 1
 %configure \
     --enable-compat-rules \
     --with-xkb-base=%{_datadir}/X11/xkb \
@@ -113,6 +109,11 @@ rm -f $RPM_BUILD_ROOT%{_datadir}/X11/xkb/compiled
 %{_datadir}/pkgconfig/xkeyboard-config.pc
 
 %changelog
+* Thu May 31 2012 Peter Hutterer <peter.hutterer@redhat.com> 2.6-1
+- xkeyboard-config 2.6
+- change source URL, 2.6 is in a different directory
+- force autoreconf, update to use intltoolize as autopoint
+
 * Wed May 23 2012 Peter Robinson <pbrobinson@fedoraproject.org> - 2.5.1-2
 - Add upstream patch to fix OLPC azerty keyboard
 
