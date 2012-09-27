@@ -6,8 +6,8 @@
 
 Summary: X Keyboard Extension configuration data
 Name: xkeyboard-config
-Version: 2.6
-Release: 3%{?gitdate:.%{gitdate}git%{gitversion}}%{dist}
+Version: 2.7
+Release: 1%{?gitdate:.%{gitdate}git%{gitversion}}%{dist}
 License: MIT
 Group: User Interface/X
 URL: http://www.freedesktop.org/wiki/Software/XKeyboardConfig
@@ -18,9 +18,6 @@ Source2:    commitid
 %else
 Source0: http://xorg.freedesktop.org/archive/individual/data/xkeyboard-config/%{name}-%{version}.tar.bz2
 %endif
-
-# Bug 826220 - Tilda is now a dead key (for accented chars)
-Patch01: 0001-Reverting-broken-fix-for-is-keyboard.patch
 
 BuildArch: noarch
 
@@ -112,6 +109,9 @@ rm -f $RPM_BUILD_ROOT%{_datadir}/X11/xkb/compiled
 %{_datadir}/pkgconfig/xkeyboard-config.pc
 
 %changelog
+* Thu Sep 27 2012 Peter Hutterer <peter.hutterer@redhat.com> 2.7-1
+- xkeyboard-config 2.7
+
 * Sun Jul 22 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 2.6-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_18_Mass_Rebuild
 
