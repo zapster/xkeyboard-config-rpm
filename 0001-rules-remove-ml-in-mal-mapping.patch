@@ -1,0 +1,37 @@
+From 05bed913327ffd5ad1e830699a238bca226ee31c Mon Sep 17 00:00:00 2001
+From: Peter Hutterer <peter.hutterer@who-t.net>
+Date: Wed, 2 Jan 2013 10:50:57 +1000
+Subject: [PATCH] =?UTF-8?q?rules:=20remove=20ml=20=E2=86=92=20in(mal)=20ma?=
+ =?UTF-8?q?pping?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+ml is Mali, the country.
+in(mal) is Malayalam, the language
+
+Likely introduced in 0a5705d83d3f27892543e809b078644a2dba3911, but went
+unnoticed so far.
+
+https://bugzilla.redhat.com/show_bug.cgi?id=647433
+
+Signed-off-by: Peter Hutterer <peter.hutterer@who-t.net>
+---
+ rules/compat/layoutsMapping.lst | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/rules/compat/layoutsMapping.lst b/rules/compat/layoutsMapping.lst
+index cecda6d..a1a0218 100644
+--- a/rules/compat/layoutsMapping.lst
++++ b/rules/compat/layoutsMapping.lst
+@@ -14,7 +14,6 @@ iu	ca(ike)
+ lo	la
+ kan	in(kan)
+ mi	mao
+-ml	in(mal)
+ ogham	ie(ogam)
+ ori	ie(ori)
+ sapmi	no(smi)
+-- 
+1.8.0.2
+

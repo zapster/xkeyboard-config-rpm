@@ -7,7 +7,7 @@
 Summary: X Keyboard Extension configuration data
 Name: xkeyboard-config
 Version: 2.7
-Release: 3%{?gitdate:.%{gitdate}git%{gitversion}}%{?dist}
+Release: 4%{?gitdate:.%{gitdate}git%{gitversion}}%{?dist}
 License: MIT
 Group: User Interface/X
 URL: http://www.freedesktop.org/wiki/Software/XKeyboardConfig
@@ -18,6 +18,8 @@ Source2:    commitid
 %else
 Source0: http://xorg.freedesktop.org/archive/individual/data/xkeyboard-config/%{name}-%{version}.tar.bz2
 %endif
+
+Patch01: 0001-rules-remove-ml-in-mal-mapping.patch
 
 BuildArch: noarch
 
@@ -109,6 +111,9 @@ rm -f $RPM_BUILD_ROOT%{_datadir}/X11/xkb/compiled
 %{_datadir}/pkgconfig/xkeyboard-config.pc
 
 %changelog
+* Wed Jan 02 2013 Peter Hutterer <peter.hutterer@redhat.com> 2.7-4
+- Fix Mali layout previously mapped to in(mal) (#647433)
+
 * Wed Nov 14 2012 Peter Hutterer <peter.hutterer@redhat.com> - 2.7-3
 - Rebuild with fixed xkbcomp, re-create the right directory listing (not
   that anyone actually uses it)
