@@ -7,7 +7,7 @@
 Summary: X Keyboard Extension configuration data
 Name: xkeyboard-config
 Version: 2.8
-Release: 1%{?gitdate:.%{gitdate}git%{gitversion}}%{?dist}
+Release: 2%{?gitdate:.%{gitdate}git%{gitversion}}%{?dist}
 License: MIT
 Group: User Interface/X
 URL: http://www.freedesktop.org/wiki/Software/XKeyboardConfig
@@ -18,6 +18,12 @@ Source2:    commitid
 %else
 Source0: http://xorg.freedesktop.org/archive/individual/data/xkeyboard-config/%{name}-%{version}.tar.bz2
 %endif
+
+Patch01: 0001-English-Mali-layouts-have-English-language-assigned-.patch
+Patch02: 0001-Fixing-ISO-codes.patch
+Patch03: 0001-Fixing-wrong-iso639-3-codes.patch
+Patch04: 0001-fr-fra-ISO-639.patch
+Patch05: 0001-rules-fix-iso639-code-for-irish.patch
 
 BuildArch: noarch
 
@@ -109,6 +115,9 @@ rm -f $RPM_BUILD_ROOT%{_datadir}/X11/xkb/compiled
 %{_datadir}/pkgconfig/xkeyboard-config.pc
 
 %changelog
+* Tue Apr 16 2013 Peter Hutterer <peter.hutterer@redhat.com> 2.8-2
+- Fix a bunch of language codes (#952510, #952519)
+
 * Thu Jan 31 2013 Peter Hutterer <peter.hutterer@redhat.com> 2.8-1
 - xkeyboard-config 2.8
 

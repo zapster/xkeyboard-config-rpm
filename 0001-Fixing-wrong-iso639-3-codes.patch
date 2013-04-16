@@ -1,0 +1,35 @@
+From 868655ca4069a724863dd22f72cf65673b14d9d8 Mon Sep 17 00:00:00 2001
+From: "Sergey V. Udaltsov" <svu@gnome.org>
+Date: Fri, 1 Feb 2013 00:32:16 +0000
+Subject: [PATCH] Fixing wrong iso639-3 codes
+
+https://bugs.freedesktop.org/show_bug.cgi?id=59840
+---
+ rules/base.xml.in | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/rules/base.xml.in b/rules/base.xml.in
+index fd9cc27..f5de8ae 100644
+--- a/rules/base.xml.in
++++ b/rules/base.xml.in
+@@ -5174,7 +5174,7 @@
+             <_shortDescription>sd</_shortDescription>
+             <_description>Sindhi</_description>
+             <languageList>
+-              <iso639Id>sd</iso639Id>
++              <iso639Id>snd</iso639Id>
+             </languageList>
+           </configItem>
+         </variant>
+@@ -5362,7 +5362,7 @@
+             <_shortDescription>fr</_shortDescription>
+             <_description>French (Mali, alternative)</_description>
+             <languageList>
+-              <iso639Id>fr</iso639Id>
++              <iso639Id>fra</iso639Id>
+             </languageList>
+           </configItem>
+         </variant>
+-- 
+1.8.1.4
+
