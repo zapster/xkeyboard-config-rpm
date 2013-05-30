@@ -6,8 +6,8 @@
 
 Summary: X Keyboard Extension configuration data
 Name: xkeyboard-config
-Version: 2.8
-Release: 3%{?gitdate:.%{gitdate}git%{gitversion}}%{?dist}
+Version: 2.9
+Release: 1%{?gitdate:.%{gitdate}git%{gitversion}}%{?dist}
 License: MIT
 Group: User Interface/X
 URL: http://www.freedesktop.org/wiki/Software/XKeyboardConfig
@@ -18,15 +18,6 @@ Source2:    commitid
 %else
 Source0: http://xorg.freedesktop.org/archive/individual/data/xkeyboard-config/%{name}-%{version}.tar.bz2
 %endif
-
-Patch01: 0001-English-Mali-layouts-have-English-language-assigned-.patch
-Patch02: 0001-Fixing-ISO-codes.patch
-Patch03: 0001-Fixing-wrong-iso639-3-codes.patch
-Patch04: 0001-fr-fra-ISO-639.patch
-Patch05: 0001-rules-fix-iso639-code-for-irish.patch
-# Fix OLPC Spanish mechanical keyboard http://dev.laptop.org/ticket/12645
-Patch06: olpc-mechanical-keyboard.patch
-Patch07: olpc-ae00.patch
 
 BuildArch: noarch
 
@@ -118,6 +109,9 @@ rm -f $RPM_BUILD_ROOT%{_datadir}/X11/xkb/compiled
 %{_datadir}/pkgconfig/xkeyboard-config.pc
 
 %changelog
+* Thu May 30 2013 Peter Hutterer <peter.hutterer@redhat.com> 2.9-1
+- xkeyboard-config 2.9
+
 * Wed May 15 2013 Daniel Drake <dsd@laptop.org> 2.8-3
 - Add upstream patches for OLPC mechanical keyboard support
 
