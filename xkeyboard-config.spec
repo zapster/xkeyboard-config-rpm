@@ -7,7 +7,7 @@
 Summary: X Keyboard Extension configuration data
 Name: xkeyboard-config
 Version: 2.9
-Release: 1%{?gitdate:.%{gitdate}git%{gitversion}}%{?dist}
+Release: 2%{?gitdate:.%{gitdate}git%{gitversion}}%{?dist}
 License: MIT
 Group: User Interface/X
 URL: http://www.freedesktop.org/wiki/Software/XKeyboardConfig
@@ -109,6 +109,9 @@ rm -f $RPM_BUILD_ROOT%{_datadir}/X11/xkb/compiled
 %{_datadir}/pkgconfig/xkeyboard-config.pc
 
 %changelog
+* Wed Jul 17 2013 Peter Hutterer <peter.hutterer@redhat.com> 2.9-2
+- Fix up three bogus changelog dates
+
 * Thu May 30 2013 Peter Hutterer <peter.hutterer@redhat.com> 2.9-1
 - xkeyboard-config 2.9
 
@@ -293,7 +296,7 @@ rm -f $RPM_BUILD_ROOT%{_datadir}/X11/xkb/compiled
 - Improve %%summary and %%description
 - Better URL
 
-* Tue Nov 13 2008 Peter Hutterer  <peter.hutterer@redhat.com> - 1.4-5
+* Thu Nov 13 2008 Peter Hutterer  <peter.hutterer@redhat.com> - 1.4-5
 - xkeyboard-config-1.4-jp-tilde.patch: TLDE in jp is Zenkaku/Hankaku, and BKSL
   should be bracket right/brace right (#469537).
 
@@ -344,7 +347,7 @@ rm -f $RPM_BUILD_ROOT%{_datadir}/X11/xkb/compiled
 - Add olpc-xkeyboard-config-es-accents.patch
 - Add olpc-xkeyboard-config-us-typo.patch
 
-* Sat Oct 09 2007 Bernardo Innocenti <bernie@codewiz.org> - 1.1-4.20071009cvs
+* Tue Oct 09 2007 Bernardo Innocenti <bernie@codewiz.org> - 1.1-4.20071009cvs
 - Upgrade xkeyboard-config snapshot to cvs20071009
 
 * Sat Oct 06 2007 Bernardo Innocenti <bernie@codewiz.org> - 1.1-4.20071006cvs
@@ -405,7 +408,7 @@ rm -f $RPM_BUILD_ROOT%{_datadir}/X11/xkb/compiled
 * Tue Aug 29 2006 Alexander Larsson <alexl@redhat.com> - 0.8-5
 - Add MacBook model and geometry, plus alt_win option
 
-* Thu Aug 22 2006 Matthias Clasen <mclasen@redhat.com> 0.8-4
+* Tue Aug 22 2006 Matthias Clasen <mclasen@redhat.com> 0.8-4
 - Fix geometry description for Thinkpads
 - Add a Kinesis model
 - Add Dell Precision M65 geometry and model
