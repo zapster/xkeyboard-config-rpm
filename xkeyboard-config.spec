@@ -6,8 +6,8 @@
 
 Summary: X Keyboard Extension configuration data
 Name: xkeyboard-config
-Version: 2.9
-Release: 4%{?gitdate:.%{gitdate}git%{gitversion}}%{?dist}
+Version: 2.10.1
+Release: 1%{?gitdate:.%{gitdate}git%{gitversion}}%{?dist}
 License: MIT
 Group: User Interface/X
 URL: http://www.freedesktop.org/wiki/Software/XKeyboardConfig
@@ -98,7 +98,7 @@ rm -f $RPM_BUILD_ROOT%{_datadir}/X11/xkb/compiled
 
 %files -f files.list -f %{name}.lang
 %defattr(-,root,root,-)
-%doc AUTHORS README NEWS TODO COPYING CREDITS docs/README.* docs/HOWTO.*
+%doc AUTHORS README NEWS TODO COPYING docs/README.* docs/HOWTO.*
 %{_datadir}/X11/xkb/rules/xorg
 %{_datadir}/X11/xkb/rules/xorg.lst
 %{_datadir}/X11/xkb/rules/xorg.xml
@@ -109,6 +109,9 @@ rm -f $RPM_BUILD_ROOT%{_datadir}/X11/xkb/compiled
 %{_datadir}/pkgconfig/xkeyboard-config.pc
 
 %changelog
+* Mon Oct 07 2013 Peter Hutterer <peter.hutterer@redhat.com> 2.10.1-1
+- xkeyboard-config 2.20.1
+
 * Sun Aug 04 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 2.9-4
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_20_Mass_Rebuild
 
