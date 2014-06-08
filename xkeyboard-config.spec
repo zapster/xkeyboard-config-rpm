@@ -7,7 +7,7 @@
 Summary: X Keyboard Extension configuration data
 Name: xkeyboard-config
 Version: 2.12
-Release: 1%{?gitdate:.%{gitdate}git%{gitversion}}%{?dist}
+Release: 2%{?gitdate:.%{gitdate}git%{gitversion}}%{?dist}
 License: MIT
 Group: User Interface/X
 URL: http://www.freedesktop.org/wiki/Software/XKeyboardConfig
@@ -109,6 +109,9 @@ rm -f $RPM_BUILD_ROOT%{_datadir}/X11/xkb/compiled
 %{_datadir}/pkgconfig/xkeyboard-config.pc
 
 %changelog
+* Sun Jun 08 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 2.12-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_21_Mass_Rebuild
+
 * Wed May 28 2014 Peter Hutterer <peter.hutterer@redhat.com> 2.12-1
 - xkeyboard-config 2.12
 
