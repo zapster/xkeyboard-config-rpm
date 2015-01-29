@@ -6,8 +6,8 @@
 
 Summary:    X Keyboard Extension configuration data
 Name:       xkeyboard-config
-Version:    2.13
-Release:    3%{?gitdate:.%{gitdate}git%{gitversion}}%{?dist}
+Version:    2.14
+Release:    1%{?gitdate:.%{gitdate}git%{gitversion}}%{?dist}
 License:    MIT
 URL:        http://www.freedesktop.org/wiki/Software/XKeyboardConfig
 
@@ -18,10 +18,6 @@ Source2:    commitid
 %else
 Source0:    http://xorg.freedesktop.org/archive/individual/data/%{name}/%{name}-%{version}.tar.bz2
 %endif
-
-# Bug 1132511 - Missing U+05BA (point holam haser for vav) on the biblical
-# hebrew layout (il biblical)
-Patch01:    0001-symbols-il-add-HOLAM-HASER-FOR-VAV-on-shift-5-to-il-.patch
 
 BuildArch:  noarch
 
@@ -111,6 +107,9 @@ rm -f $RPM_BUILD_ROOT%{_datadir}/X11/xkb/compiled
 %{_datadir}/pkgconfig/xkeyboard-config.pc
 
 %changelog
+* Thu Jan 29 2015 Peter Hutterer <peter.hutterer@redhat.com> 2.14-1
+- xkeyboard-config 2.14
+
 * Tue Nov 11 2014 Peter Hutterer <peter.hutterer@redhat.com> 2.13-3
 - Add U+05BA (point holam haser for vav) on il(biblical) (#1132511)
 
