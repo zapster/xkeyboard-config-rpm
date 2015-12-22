@@ -1,0 +1,45 @@
+From 6ae3f980f479044c9dd2846054ffb94b08100ec4 Mon Sep 17 00:00:00 2001
+From: Peter Hutterer <peter.hutterer@who-t.net>
+Date: Tue, 22 Dec 2015 12:18:32 +1000
+Subject: [PATCH] Add the br(thinkpad) model to the xml files
+
+https://bugzilla.redhat.com/show_bug.cgi?id=1292881
+
+Signed-off-by: Peter Hutterer <peter.hutterer@who-t.net>
+---
+ rules/base.xml.in | 6 ++++++
+ symbols/br        | 1 +
+ 2 files changed, 7 insertions(+)
+
+diff --git a/rules/base.xml.in b/rules/base.xml.in
+index bae2b56..daf8322 100644
+--- a/rules/base.xml.in
++++ b/rules/base.xml.in
+@@ -2279,6 +2279,12 @@
+             </languageList>
+           </configItem>
+         </variant>
++        <variant>
++          <configItem>
++            <name>thinkpad</name>
++            <_description>Portuguese (Brazil, IBM/Lenovo ThinkPad)</_description>
++          </configItem>
++        </variant>
+       </variantList>
+     </layout>
+     <layout>
+diff --git a/symbols/br b/symbols/br
+index f65d13a..b7a76d5 100644
+--- a/symbols/br
++++ b/symbols/br
+@@ -64,6 +64,7 @@ partial alphanumeric_keys
+ xkb_symbols "thinkpad" {
+ 
+     include "br(abnt2)"
++    name[Group1]="Portuguese (Brazil, IBM/Lenovo ThinkPad)";
+ 
+     key <RCTL> { [        slash,       question,        degree,    questiondown ] };
+ };
+-- 
+2.5.0
+

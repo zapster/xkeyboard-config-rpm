@@ -7,7 +7,7 @@
 Summary:    X Keyboard Extension configuration data
 Name:       xkeyboard-config
 Version:    2.16
-Release:    1%{?gitdate:.%{gitdate}git%{gitversion}}%{?dist}
+Release:    2%{?gitdate:.%{gitdate}git%{gitversion}}%{?dist}
 License:    MIT
 URL:        http://www.freedesktop.org/wiki/Software/XKeyboardConfig
 
@@ -18,6 +18,8 @@ Source2:    commitid
 %else
 Source0:    http://xorg.freedesktop.org/archive/individual/data/%{name}/%{name}-%{version}.tar.bz2
 %endif
+
+Patch01:    0001-Add-the-br-thinkpad-model-to-the-xml-files.patch
 
 BuildArch:  noarch
 
@@ -107,6 +109,9 @@ rm -f $RPM_BUILD_ROOT%{_datadir}/X11/xkb/compiled
 %{_datadir}/pkgconfig/xkeyboard-config.pc
 
 %changelog
+* Tue Dec 22 2015 Peter Hutterer <peter.hutterer@redhat.com> 2.16-2
+- Add br(thinkpad) to the xml file (#1292881)
+
 * Thu Oct 15 2015 Peter Hutterer <peter.hutterer@redhat.com> 2.16-1
 - xkeyboard-config 2.16
 
