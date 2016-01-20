@@ -1,5 +1,5 @@
 # INFO: Package contains data-only, no binaries, so no debuginfo is needed
-%define debug_package %{nil}
+%global debug_package %{nil}
 
 #global gitdate 20110415
 #global gitversion 19a0026b5
@@ -109,6 +109,9 @@ rm -f $RPM_BUILD_ROOT%{_datadir}/X11/xkb/compiled
 %{_datadir}/pkgconfig/xkeyboard-config.pc
 
 %changelog
+* Wed Jan 20 2016 Peter Hutterer <peter.hutterer@redhat.com>
+- s/define/global/
+
 * Tue Dec 22 2015 Peter Hutterer <peter.hutterer@redhat.com> 2.16-2
 - Add br(thinkpad) to the xml file (#1292881)
 
