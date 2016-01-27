@@ -6,8 +6,8 @@
 
 Summary:    X Keyboard Extension configuration data
 Name:       xkeyboard-config
-Version:    2.16
-Release:    2%{?gitdate:.%{gitdate}git%{gitversion}}%{?dist}
+Version:    2.17
+Release:    1%{?gitdate:.%{gitdate}git%{gitversion}}%{?dist}
 License:    MIT
 URL:        http://www.freedesktop.org/wiki/Software/XKeyboardConfig
 
@@ -18,8 +18,6 @@ Source2:    commitid
 %else
 Source0:    http://xorg.freedesktop.org/archive/individual/data/%{name}/%{name}-%{version}.tar.bz2
 %endif
-
-Patch01:    0001-Add-the-br-thinkpad-model-to-the-xml-files.patch
 
 BuildArch:  noarch
 
@@ -109,6 +107,9 @@ rm -f $RPM_BUILD_ROOT%{_datadir}/X11/xkb/compiled
 %{_datadir}/pkgconfig/xkeyboard-config.pc
 
 %changelog
+* Wed Jan 27 2016 Peter Hutterer <peter.hutterer@redhat.com> 2.17-1
+- xkeyboard-config 2.17
+
 * Wed Jan 20 2016 Peter Hutterer <peter.hutterer@redhat.com>
 - s/define/global/
 
