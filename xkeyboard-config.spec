@@ -7,7 +7,7 @@
 Summary:    X Keyboard Extension configuration data
 Name:       xkeyboard-config
 Version:    2.19
-Release:    1%{?gitdate:.%{gitdate}git%{gitversion}}%{?dist}
+Release:    2%{?gitdate:.%{gitdate}git%{gitversion}}%{?dist}
 License:    MIT
 URL:        http://www.freedesktop.org/wiki/Software/XKeyboardConfig
 
@@ -107,6 +107,9 @@ rm -f $RPM_BUILD_ROOT%{_datadir}/X11/xkb/compiled
 %{_datadir}/pkgconfig/xkeyboard-config.pc
 
 %changelog
+* Mon Dec 05 2016 Peter Hutterer <peter.hutterer@redhat.com> 2.19-2
+- Bump to keep F25 upgrade path happy, no changes.
+
 * Tue Oct 11 2016 Peter Hutterer <peter.hutterer@redhat.com> 2.19-1
 - xkeyboard-config 2.19
 
