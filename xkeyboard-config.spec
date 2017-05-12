@@ -7,7 +7,7 @@
 Summary:    X Keyboard Extension configuration data
 Name:       xkeyboard-config
 Version:    2.20
-Release:    3%{?gitdate:.%{gitdate}git%{gitversion}}%{?dist}
+Release:    4%{?gitdate:.%{gitdate}git%{gitversion}}%{?dist}
 License:    MIT
 URL:        http://www.freedesktop.org/wiki/Software/XKeyboardConfig
 
@@ -18,6 +18,9 @@ Source2:    commitid
 %else
 Source0:    http://xorg.freedesktop.org/archive/individual/data/%{name}/%{name}-%{version}.tar.bz2
 %endif
+
+# Submitted upstream
+Patch1:     0001-Add-evdev-mappings-for-KEY_SOUND-KEY_UWB-KEY_WWAN-an.patch 
 
 BuildArch:  noarch
 
@@ -108,6 +111,9 @@ rm -f $RPM_BUILD_ROOT%{_datadir}/X11/xkb/compiled
 %{_datadir}/pkgconfig/xkeyboard-config.pc
 
 %changelog
+* Fri May 12 2017 Hans de Goede <hdegoede@redhat.com> - 2.20-4
+- Add evdev mappings for KEY_SOUND, KEY_UWB, KEY_WWAN and KEY_RFKILL
+
 * Sat Feb 11 2017 Fedora Release Engineering <releng@fedoraproject.org> - 2.20-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_26_Mass_Rebuild
 
