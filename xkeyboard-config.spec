@@ -7,7 +7,7 @@
 Summary:    X Keyboard Extension configuration data
 Name:       xkeyboard-config
 Version:    2.21
-Release:    2%{?gitdate:.%{gitdate}git%{gitversion}}%{?dist}
+Release:    3%{?gitdate:.%{gitdate}git%{gitversion}}%{?dist}
 License:    MIT
 URL:        http://www.freedesktop.org/wiki/Software/XKeyboardConfig
 
@@ -21,6 +21,7 @@ Source0:    http://xorg.freedesktop.org/archive/individual/data/%{name}/%{name}-
 
 # Submitted upstream
 Patch1:     0001-Add-evdev-mappings-for-KEY_SOUND-KEY_UWB-KEY_WWAN-an.patch 
+Patch2:     0001-typofix-tel-sarala-key-layout.patch
 
 BuildArch:  noarch
 
@@ -111,6 +112,9 @@ rm -f $RPM_BUILD_ROOT%{_datadir}/X11/xkb/compiled
 %{_datadir}/pkgconfig/xkeyboard-config.pc
 
 %changelog
+* Tue Sep 05 2017 Peter Hutterer <peter.hutterer@redhat.com> 2.21-3
+- Fix typo in tel-salara (#1469407)
+
 * Thu Jul 27 2017 Fedora Release Engineering <releng@fedoraproject.org> - 2.21-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_27_Mass_Rebuild
 
