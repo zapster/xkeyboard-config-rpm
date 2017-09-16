@@ -4,10 +4,10 @@
 #global gitdate 20110415
 #global gitversion 19a0026b5
 
-Summary:    X Keyboard Extension configuration data
+Summary:    X Keyboard Extension configuration data (including GB with German umlauts)
 Name:       xkeyboard-config
 Version:    2.30
-Release:    3%{?gitdate:.%{gitdate}git%{gitversion}}%{?dist}
+Release:    3%{?gitdate:.%{gitdate}git%{gitversion}}%{?dist}_gb_umlaut
 License:    MIT
 URL:        http://www.freedesktop.org/wiki/Software/XKeyboardConfig
 
@@ -20,6 +20,7 @@ Source0:    http://xorg.freedesktop.org/archive/individual/data/%{name}/%{name}-
 %endif
 
 Patch01:    0001-Fix-symbols-in-syntax-error-spurious-git-conflict-ma.patch
+Patch02:    0001-Add-UK-layout-with-German-umlauts.patch
 
 BuildArch:  noarch
 
@@ -41,6 +42,7 @@ BuildRequires:  git-core
 %description
 This package contains configuration data used by the X Keyboard Extension (XKB),
 which allows selection of keyboard layouts when using a graphical interface.
+(Including GB with German umlauts.)
 
 %package devel
 Summary:    Development files for %{name}
