@@ -1,0 +1,72 @@
+From 1ae66988c74c1b4e2e2ca9254d50f98b5c9d9840 Mon Sep 17 00:00:00 2001
+From: Josef Eisl <zapster@zapster.cc>
+Date: Sat, 16 Sep 2017 11:27:55 +0200
+Subject: [PATCH] Add UK layout with German umlauts
+
+---
+ rules/base.xml |  6 ++++++
+ symbols/gb     | 31 +++++++++++++++++++++++++++++++
+ 2 files changed, 37 insertions(+)
+
+diff --git a/rules/base.xml b/rules/base.xml
+index 39f4cb1..8c461cc 100644
+--- a/rules/base.xml
++++ b/rules/base.xml
+@@ -5572,6 +5572,12 @@
+         </languageList>
+       </configItem>
+       <variantList>
++	<variant>
++	  <configItem>
++	    <name>umlaut</name>
++	    <description>English (UK, with German umlauts)</description>
++	  </configItem>
++	</variant>
+         <variant>
+           <configItem>
+             <name>extd</name>
+diff --git a/symbols/gb b/symbols/gb
+index c2529ef..b4a6a0b 100644
+--- a/symbols/gb
++++ b/symbols/gb
+@@ -25,6 +25,37 @@ xkb_symbols "basic" {
+     include "level3(ralt_switch_multikey)"
+ };
+ 
++default  partial alphanumeric_keys
++xkb_symbols "umlaut" {
++
++    // Describes the differences between a very simple en_US
++    // keyboard and a very simple U.K. keyboard layout defined by
++    // the SVR4 European Language Supplement and sometimes also
++    // known as the IBM 166 layout.
++
++    // This add support for german umlauts
++
++    include "latin"
++
++    name[Group1]="English (UK, with German umlauts)";
++
++    key <AE02>  { [         2,   quotedbl,  twosuperior,    oneeighth ] };
++    key <AE03>  { [         3,   sterling, threesuperior,    sterling ] };
++    key <AE04>  { [         4,     dollar,     EuroSign,   onequarter ] };
++
++    key <AD07> { [   u,                 U,          U00FC,      U00DC ] };
++    key <AD09> { [   o,                 O,          U00F6,      U00D6 ] };
++    key <AC01> { [   a,                 A,          U00E4,      U00C4 ] };
++
++    key <AC11>  { [apostrophe,         at, dead_circumflex, dead_caron] };
++    key <TLDE>  { [     grave,    notsign,          bar,          bar ] };
++
++    key <BKSL>  { [numbersign, asciitilde,   dead_grave,   dead_breve ] };
++    key <LSGT>  { [ backslash,        bar,          bar,    brokenbar ] };
++
++    include "level3(ralt_switch_multikey)"
++};
++
+ partial alphanumeric_keys
+ xkb_symbols "intl" { 
+ 
+-- 
+2.24.1
+
