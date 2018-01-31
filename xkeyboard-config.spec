@@ -6,7 +6,7 @@
 
 Summary:    X Keyboard Extension configuration data
 Name:       xkeyboard-config
-Version:    2.22
+Version:    2.23
 Release:    1%{?gitdate:.%{gitdate}git%{gitversion}}%{?dist}
 License:    MIT
 URL:        http://www.freedesktop.org/wiki/Software/XKeyboardConfig
@@ -111,6 +111,9 @@ rm -f $RPM_BUILD_ROOT%{_datadir}/X11/xkb/compiled
 %{_datadir}/pkgconfig/xkeyboard-config.pc
 
 %changelog
+* Wed Jan 31 2018 Peter Hutterer <peter.hutterer@redhat.com> 2.23-1
+- xkeyboard-config 2.23
+
 * Fri Oct 06 2017 Peter Hutterer <peter.hutterer@redhat.com> 2.22-1
 - xkeyboard-config 2.22
 
