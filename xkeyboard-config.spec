@@ -6,7 +6,7 @@
 
 Summary:    X Keyboard Extension configuration data
 Name:       xkeyboard-config
-Version:    2.23
+Version:    2.23.1
 Release:    1%{?gitdate:.%{gitdate}git%{gitversion}}%{?dist}
 License:    MIT
 URL:        http://www.freedesktop.org/wiki/Software/XKeyboardConfig
@@ -21,6 +21,7 @@ Source0:    http://xorg.freedesktop.org/archive/individual/data/%{name}/%{name}-
 
 # Submitted upstream
 Patch1:     0001-Add-evdev-mappings-for-KEY_SOUND-KEY_UWB-KEY_WWAN-an.patch 
+Patch2:     0001-Fix-typo-in-Polish-symbols-file.patch
 
 BuildArch:  noarch
 
@@ -53,27 +54,7 @@ Requires:   pkgconfig
 Development files for %{name}.
 
 %prep
-%setup -q -n %{name}-%{?gitdate:%{gitdate}}%{!?gitdate:%{version}}
-
-%if 0%{?gitdate}
-git checkout -b fedora
-sed -i 's/git/&+ssh/' .git/config
-if [ -z "$GIT_COMMITTER_NAME" ]; then
-    git config user.email "x@fedoraproject.org"
-    git config user.name "Fedora X Ninjas"
-fi
-git commit -am "%{name} %{version}"
-%else
-git init
-if [ -z "$GIT_COMMITTER_NAME" ]; then
-    git config user.email "x@fedoraproject.org"
-    git config user.name "Fedora X Ninjas"
-fi
-git add .
-git commit -a -q -m "%{name} %{version} baseline."
-%endif
-
-git am -p1 %{patches} < /dev/null
+%autosetup -S git
 
 %build
 AUTOPOINT="intltoolize --automake --copy" autoreconf -v --force --install || exit 1
@@ -111,6 +92,11 @@ rm -f $RPM_BUILD_ROOT%{_datadir}/X11/xkb/compiled
 %{_datadir}/pkgconfig/xkeyboard-config.pc
 
 %changelog
+* Wed Feb 07 2018 Peter Hutterer <peter.hutterer@redhat.com> 2.23.1-1
+- Fix typo in polish keyboard layout
+- xkeyboard-config 2.23.1
+- use autosetup
+
 * Wed Jan 31 2018 Peter Hutterer <peter.hutterer@redhat.com> 2.23-1
 - xkeyboard-config 2.23
 
