@@ -6,7 +6,7 @@
 
 Summary:    X Keyboard Extension configuration data
 Name:       xkeyboard-config
-Version:    2.23.1
+Version:    2.24
 Release:    1%{?gitdate:.%{gitdate}git%{gitversion}}%{?dist}
 License:    MIT
 URL:        http://www.freedesktop.org/wiki/Software/XKeyboardConfig
@@ -18,10 +18,6 @@ Source2:    commitid
 %else
 Source0:    http://xorg.freedesktop.org/archive/individual/data/%{name}/%{name}-%{version}.tar.bz2
 %endif
-
-# Submitted upstream
-Patch1:     0001-Add-evdev-mappings-for-KEY_SOUND-KEY_UWB-KEY_WWAN-an.patch 
-Patch2:     0001-Fix-typo-in-Polish-symbols-file.patch
 
 BuildArch:  noarch
 
@@ -92,6 +88,9 @@ rm -f $RPM_BUILD_ROOT%{_datadir}/X11/xkb/compiled
 %{_datadir}/pkgconfig/xkeyboard-config.pc
 
 %changelog
+* Tue Jun 05 2018 Peter Hutterer <peter.hutterer@redhat.com> 2.24-1
+- xkeyboard-config 2.24
+
 * Wed Feb 07 2018 Peter Hutterer <peter.hutterer@redhat.com> 2.23.1-1
 - Fix typo in polish keyboard layout
 - xkeyboard-config 2.23.1
