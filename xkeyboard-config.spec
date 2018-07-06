@@ -7,7 +7,7 @@
 Summary:    X Keyboard Extension configuration data
 Name:       xkeyboard-config
 Version:    2.24
-Release:    2%{?gitdate:.%{gitdate}git%{gitversion}}%{?dist}
+Release:    3%{?gitdate:.%{gitdate}git%{gitversion}}%{?dist}
 License:    MIT
 URL:        http://www.freedesktop.org/wiki/Software/XKeyboardConfig
 
@@ -18,12 +18,6 @@ Source2:    commitid
 %else
 Source0:    http://xorg.freedesktop.org/archive/individual/data/%{name}/%{name}-%{version}.tar.bz2
 %endif
-
-# xkbcomp 1.4.1 fails to parse those because of maximum=374. See the patch
-# there, meanwhile revert them here until xorg-x11-xkb-utils-7.7-25 has been
-# in stable for a while
-Patch01:    0001-Revert-Map-evdev-keycode-KEY_KEYBOARD-to-XF86Keyboar.patch
-Patch02:    0002-Revert-Map-evdev-keycode-KEY_FAVORITES-to-XF86Favori.patch
 
 BuildArch:  noarch
 
@@ -94,6 +88,10 @@ rm -f $RPM_BUILD_ROOT%{_datadir}/X11/xkb/compiled
 %{_datadir}/pkgconfig/xkeyboard-config.pc
 
 %changelog
+* Fri Jul 06 2018 Peter Hutterer <peter.hutterer@redhat.com> 2.24-3
+- Remove high-keycode removal patches, xkbcomp 1.4.2 has been in stable for
+  long enough (related #1587998)
+
 * Thu Jun 07 2018 Peter Hutterer <peter.hutterer@redhat.com> 2.24-2
 - Revert two high keycode mappings, xkbcomp fails to parse those.
   (#1587998)
