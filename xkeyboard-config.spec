@@ -6,8 +6,8 @@
 
 Summary:    X Keyboard Extension configuration data
 Name:       xkeyboard-config
-Version:    2.26
-Release:    2%{?gitdate:.%{gitdate}git%{gitversion}}%{?dist}
+Version:    2.27
+Release:    1%{?gitdate:.%{gitdate}git%{gitversion}}%{?dist}
 License:    MIT
 URL:        http://www.freedesktop.org/wiki/Software/XKeyboardConfig
 
@@ -19,15 +19,9 @@ Source2:    commitid
 Source0:    http://xorg.freedesktop.org/archive/individual/data/%{name}/%{name}-%{version}.tar.bz2
 %endif
 
-Patch01:    0001-evdev-inet-Fix-KEY_KEYBOARD-mapping.patch
-Patch02:    0001-Fixed-broken-pt-layout.patch
-Patch03:    0001-Map-evdev-keycode-KEY_ROTATE_LOCK_TOGGLE-to-XF86Rota.patch
-Patch04:    0001-Map-evdev-keycode-KEY_SOUND-to-XF86AudioPreset.patch
-
 BuildArch:  noarch
 
-BuildRequires:  gettext
-BuildRequires:  intltool
+BuildRequires:  gettext gettext-devel
 BuildRequires:  libtool
 BuildRequires:  libxslt
 BuildRequires:  perl(XML::Parser)
@@ -58,7 +52,7 @@ Development files for %{name}.
 %autosetup -S git
 
 %build
-AUTOPOINT="intltoolize --automake --copy" autoreconf -v --force --install || exit 1
+autoreconf -v --force --install || exit 1
 %configure \
     --enable-compat-rules \
     --with-xkb-base=%{_datadir}/X11/xkb \
@@ -93,6 +87,10 @@ rm -f $RPM_BUILD_ROOT%{_datadir}/X11/xkb/compiled
 %{_datadir}/pkgconfig/xkeyboard-config.pc
 
 %changelog
+* Thu Jun 13 2019 Peter Hutterer <peter.hutterer@redhat.com> 2.27-1
+- xkeyboard-config 2.27
+- drop intltool, no longer needed, see upstream commit e8026f673e
+
 * Mon May 27 2019 Peter Hutterer <peter.hutterer@redhat.com> 2.26-2
 - xkeyboard-config 2.26, with sources this time
 
