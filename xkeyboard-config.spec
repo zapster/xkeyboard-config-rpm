@@ -7,7 +7,7 @@
 Summary:    X Keyboard Extension configuration data
 Name:       xkeyboard-config
 Version:    2.30
-Release:    1%{?gitdate:.%{gitdate}git%{gitversion}}%{?dist}
+Release:    2%{?gitdate:.%{gitdate}git%{gitversion}}%{?dist}
 License:    MIT
 URL:        http://www.freedesktop.org/wiki/Software/XKeyboardConfig
 
@@ -18,6 +18,8 @@ Source2:    commitid
 %else
 Source0:    http://xorg.freedesktop.org/archive/individual/data/%{name}/%{name}-%{version}.tar.bz2
 %endif
+
+Patch01:    0001-Fix-symbols-in-syntax-error-spurious-git-conflict-ma.patch
 
 BuildArch:  noarch
 
@@ -65,7 +67,7 @@ make install DESTDIR=$RPM_BUILD_ROOT INSTALL="install -p"
 
 # Remove unnecessary symlink
 rm -f $RPM_BUILD_ROOT%{_datadir}/X11/xkb/compiled
-%find_lang %{name} 
+%find_lang %{name}
 
 # Create filelist
 {
@@ -87,6 +89,9 @@ rm -f $RPM_BUILD_ROOT%{_datadir}/X11/xkb/compiled
 %{_datadir}/pkgconfig/xkeyboard-config.pc
 
 %changelog
+* Fri Jun 19 2020 Peter Hutterer <peter.hutterer@redhat.com> 2.30-2
+- Fix a syntax error in the indian symbols file
+
 * Wed Jun 03 2020 Peter Hutterer <peter.hutterer@redhat.com> 2.30-1
 - xkeyboard-config 2.30
 
