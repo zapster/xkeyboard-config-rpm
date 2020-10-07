@@ -6,8 +6,8 @@
 
 Summary:    X Keyboard Extension configuration data
 Name:       xkeyboard-config
-Version:    2.30
-Release:    3%{?gitdate:.%{gitdate}git%{gitversion}}%{?dist}
+Version:    2.31
+Release:    1%{?gitdate:.%{gitdate}git%{gitversion}}%{?dist}
 License:    MIT
 URL:        http://www.freedesktop.org/wiki/Software/XKeyboardConfig
 
@@ -18,8 +18,6 @@ Source2:    commitid
 %else
 Source0:    http://xorg.freedesktop.org/archive/individual/data/%{name}/%{name}-%{version}.tar.bz2
 %endif
-
-Patch01:    0001-Fix-symbols-in-syntax-error-spurious-git-conflict-ma.patch
 
 BuildArch:  noarch
 
@@ -79,7 +77,7 @@ rm -f $RPM_BUILD_ROOT%{_datadir}/X11/xkb/compiled
 }
 
 %files -f files.list -f %{name}.lang
-%doc AUTHORS README NEWS TODO COPYING docs/README.* docs/HOWTO.*
+%doc AUTHORS README NEWS COPYING docs/README.* docs/HOWTO.*
 %{_datadir}/X11/xkb/rules/xorg
 %{_datadir}/X11/xkb/rules/xorg.lst
 %{_datadir}/X11/xkb/rules/xorg.xml
@@ -89,6 +87,9 @@ rm -f $RPM_BUILD_ROOT%{_datadir}/X11/xkb/compiled
 %{_datadir}/pkgconfig/xkeyboard-config.pc
 
 %changelog
+* Wed Oct 07 2020 Peter Hutterer <peter.hutterer@redhat.com> 2.31-1
+- xkeyboard-config 2.31
+
 * Wed Jul 29 2020 Fedora Release Engineering <releng@fedoraproject.org> - 2.30-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_33_Mass_Rebuild
 
