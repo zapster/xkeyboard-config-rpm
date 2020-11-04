@@ -7,7 +7,7 @@
 Summary:    X Keyboard Extension configuration data
 Name:       xkeyboard-config
 Version:    2.31
-Release:    1%{?gitdate:.%{gitdate}git%{gitversion}}%{?dist}
+Release:    2%{?gitdate:.%{gitdate}git%{gitversion}}%{?dist}
 License:    MIT
 URL:        http://www.freedesktop.org/wiki/Software/XKeyboardConfig
 
@@ -30,11 +30,7 @@ BuildRequires:  pkgconfig(x11) >= 1.4.3
 BuildRequires:  pkgconfig(xorg-macros) >= 1.12
 BuildRequires:  pkgconfig(xproto) >= 7.0.20
 BuildRequires:  xkbcomp
-BuildRequires:  git
-
-%if 0%{?gitdate}
 BuildRequires:  git-core
-%endif
 
 %description
 This package contains configuration data used by the X Keyboard Extension (XKB),
@@ -87,6 +83,9 @@ rm -f $RPM_BUILD_ROOT%{_datadir}/X11/xkb/compiled
 %{_datadir}/pkgconfig/xkeyboard-config.pc
 
 %changelog
+* Wed Nov 04 2020 Peter Hutterer <peter.hutterer@redhat.com> 2.31-2
+- Fix BuildRequires for git, we only need git-core
+
 * Wed Oct 07 2020 Peter Hutterer <peter.hutterer@redhat.com> 2.31-1
 - xkeyboard-config 2.31
 
