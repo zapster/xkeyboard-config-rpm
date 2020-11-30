@@ -7,7 +7,7 @@
 Summary:    X Keyboard Extension configuration data
 Name:       xkeyboard-config
 Version:    2.31
-Release:    2%{?gitdate:.%{gitdate}git%{gitversion}}%{?dist}
+Release:    3%{?gitdate:.%{gitdate}git%{gitversion}}%{?dist}
 License:    MIT
 URL:        http://www.freedesktop.org/wiki/Software/XKeyboardConfig
 
@@ -22,7 +22,7 @@ Source0:    http://xorg.freedesktop.org/archive/individual/data/%{name}/%{name}-
 BuildArch:  noarch
 
 BuildRequires:  gettext gettext-devel
-BuildRequires:  libtool
+BuildRequires:  libtool make
 BuildRequires:  libxslt
 BuildRequires:  perl(XML::Parser)
 BuildRequires:  pkgconfig(glib-2.0)
@@ -83,6 +83,9 @@ rm -f $RPM_BUILD_ROOT%{_datadir}/X11/xkb/compiled
 %{_datadir}/pkgconfig/xkeyboard-config.pc
 
 %changelog
+* Tue Dec 01 2020 Peter Hutterer <peter.hutterer@redhat.com> 2.31-3
+- Add make to BuildRequires
+
 * Wed Nov 04 2020 Peter Hutterer <peter.hutterer@redhat.com> 2.31-2
 - Fix BuildRequires for git, we only need git-core
 
