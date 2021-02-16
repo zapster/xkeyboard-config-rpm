@@ -6,8 +6,8 @@
 
 Summary:    X Keyboard Extension configuration data
 Name:       xkeyboard-config
-Version:    2.31
-Release:    4%{?gitdate:.%{gitdate}git%{gitversion}}%{?dist}
+Version:    2.32
+Release:    1%{?gitdate:.%{gitdate}git%{gitversion}}%{?dist}
 License:    MIT
 URL:        http://www.freedesktop.org/wiki/Software/XKeyboardConfig
 
@@ -22,7 +22,7 @@ Source0:    http://xorg.freedesktop.org/archive/individual/data/%{name}/%{name}-
 BuildArch:  noarch
 
 BuildRequires:  gettext gettext-devel
-BuildRequires:  libtool make
+BuildRequires:  meson
 BuildRequires:  libxslt
 BuildRequires:  perl(XML::Parser)
 BuildRequires:  pkgconfig(glib-2.0)
@@ -48,16 +48,11 @@ Development files for %{name}.
 %autosetup -S git
 
 %build
-autoreconf -v --force --install || exit 1
-%configure \
-    --enable-compat-rules \
-    --with-xkb-base=%{_datadir}/X11/xkb \
-    --with-xkb-rules-symlink=xorg
-
-make %{?_smp_mflags}
+%meson -Dcompat-rules=true
+%meson_build
 
 %install
-make install DESTDIR=$RPM_BUILD_ROOT INSTALL="install -p"
+%meson_install
 
 # Remove unnecessary symlink
 rm -f $RPM_BUILD_ROOT%{_datadir}/X11/xkb/compiled
@@ -74,15 +69,18 @@ rm -f $RPM_BUILD_ROOT%{_datadir}/X11/xkb/compiled
 
 %files -f files.list -f %{name}.lang
 %doc AUTHORS README NEWS COPYING docs/README.* docs/HOWTO.*
-%{_datadir}/X11/xkb/rules/xorg
-%{_datadir}/X11/xkb/rules/xorg.lst
-%{_datadir}/X11/xkb/rules/xorg.xml
 %{_mandir}/man7/xkeyboard-config.*
 
 %files devel
 %{_datadir}/pkgconfig/xkeyboard-config.pc
 
 %changelog
+* Tue Feb 16 2021 Peter Hutterer <peter.hutterer@redhat.com> 2.32-1
+- xkeyboard-config 2.32
+- build with meson now
+- drop the xorg ruleset, no longer in use. Everything is hardcoded to evdev
+  these days.
+
 * Thu Jan 28 2021 Fedora Release Engineering <releng@fedoraproject.org> - 2.31-4
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_34_Mass_Rebuild
 
