@@ -7,7 +7,7 @@
 Summary:    X Keyboard Extension configuration data
 Name:       xkeyboard-config
 Version:    2.32
-Release:    2%{?gitdate:.%{gitdate}git%{gitversion}}%{?dist}
+Release:    3%{?gitdate:.%{gitdate}git%{gitversion}}%{?dist}
 License:    MIT
 URL:        http://www.freedesktop.org/wiki/Software/XKeyboardConfig
 
@@ -19,6 +19,7 @@ Source2:    commitid
 Source0:    http://xorg.freedesktop.org/archive/individual/data/%{name}/%{name}-%{version}.tar.bz2
 %endif
 Patch01: 0001-rules-add-a-custom-layout-to-the-XML-file.patch
+Patch02: 0001-meson.build-add-option-to-install-the-legacy-xorg-sy.patch
 
 BuildArch:  noarch
 
@@ -49,7 +50,7 @@ Development files for %{name}.
 %autosetup -S git
 
 %build
-%meson -Dcompat-rules=true
+%meson -Dcompat-rules=true -Dxorg-rules-symlinks=true
 %meson_build
 
 %install
@@ -71,11 +72,18 @@ rm -f $RPM_BUILD_ROOT%{_datadir}/X11/xkb/compiled
 %files -f files.list -f %{name}.lang
 %doc AUTHORS README NEWS COPYING docs/README.* docs/HOWTO.*
 %{_mandir}/man7/xkeyboard-config.*
+%{_datadir}/X11/xkb/rules/xorg
+%{_datadir}/X11/xkb/rules/xorg.lst
+%{_datadir}/X11/xkb/rules/xorg.xml
 
 %files devel
 %{_datadir}/pkgconfig/xkeyboard-config.pc
 
 %changelog
+* Tue Apr 20 2021 Peter Hutterer <peter.hutterer@redhat.com> 2.32-3
+- Restore the xorg ruleset, console-setup and possibly others are still
+  using those (#1951459)
+
 * Fri Apr 09 2021 Peter Hutterer <peter.hutterer@redhat.com> 2.32-2
 - Allow for a "custom" layout
 
