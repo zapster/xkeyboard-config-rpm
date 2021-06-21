@@ -6,8 +6,8 @@
 
 Summary:    X Keyboard Extension configuration data
 Name:       xkeyboard-config
-Version:    2.32
-Release:    3%{?gitdate:.%{gitdate}git%{gitversion}}%{?dist}
+Version:    2.33
+Release:    1%{?gitdate:.%{gitdate}git%{gitversion}}%{?dist}
 License:    MIT
 URL:        http://www.freedesktop.org/wiki/Software/XKeyboardConfig
 
@@ -18,8 +18,6 @@ Source2:    commitid
 %else
 Source0:    http://xorg.freedesktop.org/archive/individual/data/%{name}/%{name}-%{version}.tar.bz2
 %endif
-Patch01: 0001-rules-add-a-custom-layout-to-the-XML-file.patch
-Patch02: 0001-meson.build-add-option-to-install-the-legacy-xorg-sy.patch
 
 BuildArch:  noarch
 
@@ -80,6 +78,9 @@ rm -f $RPM_BUILD_ROOT%{_datadir}/X11/xkb/compiled
 %{_datadir}/pkgconfig/xkeyboard-config.pc
 
 %changelog
+* Tue Jun 22 2021 Peter Hutterer <peter.hutterer@redhat.com> 2.33-3
+- xkeyboard-config 2.33
+
 * Tue Apr 20 2021 Peter Hutterer <peter.hutterer@redhat.com> 2.32-3
 - Restore the xorg ruleset, console-setup and possibly others are still
   using those (#1951459)
